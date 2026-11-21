@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+data/*
+!data/.gitkeep
+nodered/data/*
+!nodered/data/.gitkeep
+!nodered/data/flows.json
+!nodered/data/package.json
+!nodered/data/settings.js
+.DS_Store

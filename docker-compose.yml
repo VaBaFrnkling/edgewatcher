@@ -1,0 +1,62 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto-data:/mosquitto/data
+
+  # Central service (Eron). Uncomment when central/ contains its code and Dockerfile.
+  # central:
+  #   build: ./central
+  #   command: ["--broker", "mosquitto"]
+  #   environment:
+  #     EW_DATA: /data
+  #   volumes:
+  #     - ./data:/data
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - mosquitto
+
+  nodered:
+    image: nodered/node-red:4.0
+    ports:
+      - "1880:1880"
+    environment:
+      API_URL: http://central:8000
+    volumes:
+      - ./nodered/data:/data
+    depends_on:
+      - mosquitto
+
+  # Three simulated devices, each with its own hostname and load profile:
+  #   idle  - low, steady load
+  #   busy  - high RAM, medium CPU
+  #   spiky - short CPU spikes (5-20 s) that a rule with duration_s >= 30 must ignore
+  # Inject high load:  docker compose exec agent-2 touch /tmp/edgewatcher_load_sim-02
+  # Remove it:         docker compose exec agent-2 rm /tmp/edgewatcher_load_sim-02
+  agent-1:
+    build: ./agent
+    hostname: sim-01
+    command: ["--broker", "mosquitto", "--simulate", "--profile", "idle"]
+    depends_on:
+      - mosquitto
+
+  agent-2:
+    build: ./agent
+    hostname: sim-02
+    command: ["--broker", "mosquitto", "--simulate", "--profile", "busy"]
+    depends_on:
+      - mosquitto
+
+  agent-3:
+    build: ./agent
+    hostname: sim-03
+    command: ["--broker", "mosquitto", "--simulate", "--profile", "spiky"]
+    depends_on:
+      - mosquitto
+
+volumes:
+  mosquitto-data:
