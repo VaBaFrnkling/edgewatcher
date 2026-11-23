@@ -8,17 +8,17 @@ services:
       - mosquitto-data:/mosquitto/data
 
   # Central service (Eron). Uncomment when central/ contains its code and Dockerfile.
-  # central:
-  #   build: ./central
-  #   command: ["--broker", "mosquitto"]
-  #   environment:
-  #     EW_DATA: /data
-  #   volumes:
-  #     - ./data:/data
-  #   ports:
-  #     - "8000:8000"
-  #   depends_on:
-  #     - mosquitto
+  central:
+    build: ./central
+    command: ["--broker", "mosquitto"]
+    environment:
+      EW_DATA: /data
+    volumes:
+      - ./data:/data
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mosquitto
 
   nodered:
     image: nodered/node-red:4.0

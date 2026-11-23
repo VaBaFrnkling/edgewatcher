@@ -1,0 +1,5 @@
+# MQTT client library (Paho v2.x with VERSION2 callback API)
+paho-mqtt>=2.0,<3
+# REST HTTP API framework and ASGI web server
+fastapi>=0.110
+uvicorn>=0.29
