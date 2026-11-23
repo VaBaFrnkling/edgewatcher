@@ -5,12 +5,10 @@ Runs on every edge device. It:
   * evaluates its edge rules locally (content filtering at the source) and publishes an
     alert only when a rule changes state, FIRING or RESOLVED (QoS 1);
   * applies versioned rule sets received on a retained topic and acknowledges them (QoS 1);
-  * reports ONLINE / OFFLINE on a retained status topic, with a Last Will;
-  * keeps alerts in an in-memory buffer (up to 1000) while the broker is unreachable.
+  * reports ONLINE / OFFLINE on a retained status topic, with a Last Will.
 
-MQTT routes messages only by topic. Content-based filtering (selecting messages by the
-values they contain) is built on top of it, here on the device, before publishing
-(early filtering): only rule state changes leave the device as alerts.
+The broker routes the agent's messages by topic. Content-based publish/subscribe
+(subscriptions defined by a predicate on the content) is done by the central service.
 
 Usage:
   python agent.py --broker <broker-ip>                          # real device (Raspberry Pi)
@@ -73,8 +71,7 @@ def validate_rule(r):
 class RuleEngine:
     """Edge rules evaluated locally. Reports only state changes (FIRING / RESOLVED)."""
 
-    def __init__(self, has_temp=True):
-        self.has_temp = has_temp     # False if the device has no temperature sensor
+    def __init__(self):
         self.version = 0
         self.rules = []          # list of clean rule dicts
         self.state = {}          # rule_id -> {"state": "NORMAL"/"FIRING", "since": float|None}
@@ -104,9 +101,6 @@ class RuleEngine:
                     clean = validate_rule(r)
                 except ValueError as e:
                     errors.append(str(e))
-                    continue
-                if clean["metric"] == "temp_c" and not self.has_temp:
-                    errors.append(f"{clean['rule_id']}: this device has no temperature sensor")
                     continue
                 if clean["rule_id"] in seen:
                     errors.append(f"{clean['rule_id']}: duplicated rule_id")
@@ -334,12 +328,9 @@ def main(argv=None, stop=None):
     if not host or any(c in host for c in "/+#"):
         raise SystemExit(f"Invalid hostname {host!r}: it is used in MQTT topics")
     base = f"devices/{host}"
-    # New on every start: lets the central service tell a restart (rule states lost, so
-    # FIRING alerts will never be RESOLVED) from a reconnection (states kept)
-    boot_id = str(uuid.uuid4())
+    engine = RuleEngine()
     load_file = a.load_file or os.path.join(tempfile.gettempdir(), f"edgewatcher_load_{host}")
     sim = Simulator(host, load_file, a.profile) if a.simulate else None
-    engine = RuleEngine(has_temp=bool(sim) or read_temperature() is not None)
     scanner = None if sim else ProcessScanner()
     os_name = sim.os_name if sim else read_os_name()
     print(f"EdgeWatcher agent '{host}' ({os_name}) connecting to broker {a.broker}:{a.port}"
@@ -358,7 +349,7 @@ def main(argv=None, stop=None):
             print(f"Connection refused: {reason_code}", flush=True)
             return
         print("Connected to the broker", flush=True)
-        c.publish(f"{base}/status", json.dumps({"status": "ONLINE", "hostname": host, "boot_id": boot_id, "os": os_name,
+        c.publish(f"{base}/status", json.dumps({"status": "ONLINE", "hostname": host, "os": os_name,
                                                 "simulated": bool(sim), "ts": now_iso()}),
                   qos=1, retain=True)
         c.subscribe(f"{base}/rules", qos=1)
@@ -438,7 +429,7 @@ def main(argv=None, stop=None):
                      "name": rule["name"], "state": new_state, "metric": rule["metric"],
                      "op": rule["op"], "value": value, "threshold": rule["threshold"],
                      "duration_s": rule["duration_s"], "severity": rule["severity"],
-                     "rules_version": engine.version, "boot_id": boot_id, "ts": now_iso()}
+                     "rules_version": engine.version, "ts": now_iso()}
             print(f"Alert {new_state}: {rule['name']} ({rule['metric']} = {value})", flush=True)
             if client.is_connected():
                 client.publish(f"{base}/alerts", json.dumps(alert), qos=1)
