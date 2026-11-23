@@ -9,8 +9,8 @@ device, alerts and a Node-RED dashboard. Student project for Distributed Systems
   and processes, evaluates its edge rules locally and publishes alerts (FIRING / RESOLVED).
 - **Broker** (`mosquitto/`, Eclipse Mosquitto 2): all communication goes through it.
 - **Central service** (`central/`, Python + FastAPI): history, rule management,
-  alert de-duplication and forwarding to the dashboard. *In progress.*
-- **Dashboard** (`nodered/`, Node-RED + FlowFuse Dashboard 2.0). *In progress.*
+  alert de-duplication and forwarding to the dashboard. 
+- **Dashboard** (`nodered/`, Node-RED + FlowFuse Dashboard 2.0). 
 
 ## Run with Docker Compose
 
