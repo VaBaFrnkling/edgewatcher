@@ -7,8 +7,9 @@ Runs on every edge device. It:
   * applies versioned rule sets received on a retained topic and acknowledges them (QoS 1);
   * reports ONLINE / OFFLINE on a retained status topic, with a Last Will.
 
-The broker routes the agent's messages by topic. Content-based publish/subscribe
-(subscriptions defined by a predicate on the content) is done by the central service.
+The broker routes messages only by topic. Content-based filtering (selecting messages by
+the value of their fields) is done here, at the source: the agent evaluates its rules and
+publishes only state changes.
 
 Usage:
   python agent.py --broker <broker-ip>                          # real device (Raspberry Pi)
