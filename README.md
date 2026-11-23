@@ -1,15 +1,15 @@
 # EdgeWatcher
 
-Distributed monitoring of IoT edge devices over MQTT, with content-based alert rules evaluated
-on each device and a Node-RED dashboard. Student project for Distributed Systems (Master in IoT, UPM).
+Distributed monitoring for IoT Edge devices over MQTT: edge rules with alerts, content-based
+subscriptions and a Node-RED dashboard. Student project for Distributed Systems (Master in IoT, UPM).
 
 ## Architecture
 
 - **Device agent** (`agent/`, Python + psutil + Paho MQTT): runs on every device, publishes metrics
   and processes, evaluates its edge rules locally and publishes alerts (FIRING / RESOLVED).
-- **Broker** (`mosquitto/`, Eclipse Mosquitto 2): all MQTT traffic goes through it (the dashboard also uses the central service's HTTP API).
-- **Central service** (`central/`, Python + FastAPI): history, rule management,
-  de-duplicated alerts and the HTTP API for the dashboard. *In progress.*
+- **Broker** (`mosquitto/`, Eclipse Mosquitto 2): all communication goes through it.
+- **Central service** (`central/`, Python + FastAPI): history, rule management and
+  content-based routing. *In progress.*
 - **Dashboard** (`nodered/`, Node-RED + FlowFuse Dashboard 2.0). *In progress.*
 
 ## Run with Docker Compose
