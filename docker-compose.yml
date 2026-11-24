@@ -30,6 +30,7 @@ services:
       - ./nodered/data:/data
     depends_on:
       - mosquitto
+      - central
 
   # Three simulated devices, each with its own hostname and load profile:
   #   idle  - low, steady load

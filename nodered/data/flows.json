@@ -1,0 +1,1667 @@
+[
+    {
+        "id": "a7b49e5e7d2d312e",
+        "type": "tab",
+        "label": "Fleet",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b28e9db37a8c35ed",
+        "type": "mqtt-broker",
+        "name": "EdgeWatcher Broker",
+        "broker": "mosquitto",
+        "port": 1883,
+        "clientid": "nodered-dashboard",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": false,
+        "autoUnsubscribe": false,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "103e252b55f0eb97",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "b49c6e895c83ea9f",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "efb167df9577d141",
+        "type": "ui-page",
+        "name": "Fleet",
+        "ui": "103e252b55f0eb97",
+        "path": "/fleet",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "b49c6e895c83ea9f",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "tabs": [],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "191d94f2bbfad098",
+        "type": "ui-group",
+        "name": "sim-01",
+        "page": "efb167df9577d141",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": false,
+        "tab": ""
+    },
+    {
+        "id": "9652e64a01bb85da",
+        "type": "ui-group",
+        "name": "sim-02",
+        "page": "efb167df9577d141",
+        "width": 6,
+        "height": 1,
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": false,
+        "tab": ""
+    },
+    {
+        "id": "c2c025a872801212",
+        "type": "ui-group",
+        "name": "sim-03",
+        "page": "efb167df9577d141",
+        "width": 6,
+        "height": 1,
+        "order": -1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": false,
+        "tab": ""
+    },
+    {
+        "id": "272a1e7e71b392c8",
+        "type": "mqtt in",
+        "z": "a7b49e5e7d2d312e",
+        "name": "Live device states",
+        "topic": "dashboard/+/state",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "b28e9db37a8c35ed",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 220,
+        "wires": [
+            [
+                "57de8a610255f637",
+                "83315515a475e05a",
+                "3493e8bd0dd8c8e1",
+                "dc01707c40817b35",
+                "44697d4cd12c8d80",
+                "8cf216879bd74197",
+                "3e1283802da9abd4",
+                "7a61bb0f256c7f6c",
+                "ee630b24d8bed562",
+                "505ab69bc2607438",
+                "61db7bed969587ab",
+                "5e7d85cdd76e0917",
+                "def22a9eb724a936",
+                "ea5310a791a1203c",
+                "781fbd910354e100",
+                "a678fb415c4a7011",
+                "f7cb370c8f19ff26",
+                "f8e3f4c1c2a5557e",
+                "b2b08944768db23e",
+                "fe41182d1bc03135",
+                "e2f3066059f683f9",
+                "734b48f3bc98381c",
+                "d3146d31559b364f",
+                "6b7d81f7c8f844b4",
+                "758fe74d7a74b1b7"
+            ]
+        ]
+    },
+    {
+        "id": "57de8a610255f637",
+        "type": "debug",
+        "z": "a7b49e5e7d2d312e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 360,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "83315515a475e05a",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 CPU",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nconst cpu = device.metrics?.cpu_percent;\n\nif (typeof cpu !== \"number\") {\n    return null;\n}\n\nmsg.payload = cpu;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 280,
+        "wires": [
+            [
+                "9f487683121805c9"
+            ]
+        ]
+    },
+    {
+        "id": "9f487683121805c9",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 CPU gauge",
+        "group": "191d94f2bbfad098",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CPU",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3493e8bd0dd8c8e1",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 RAM",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nconst ram = device.metrics?.ram_percent;\n\nif (typeof ram !== \"number\") {\n    return null;\n}\n\nmsg.payload = ram;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 320,
+        "wires": [
+            [
+                "ecdf558f13911fe3"
+            ]
+        ]
+    },
+    {
+        "id": "ecdf558f13911fe3",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 RAM gauge",
+        "group": "191d94f2bbfad098",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "RAM",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc01707c40817b35",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Disk",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nconst disk = device.metrics?.disk_percent;\n\nif (typeof disk !== \"number\") {\n    return null;\n}\n\nmsg.payload = disk;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 360,
+        "wires": [
+            [
+                "e88adac88dff7877"
+            ]
+        ]
+    },
+    {
+        "id": "e88adac88dff7877",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Disk gauge",
+        "group": "191d94f2bbfad098",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Disk",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44697d4cd12c8d80",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Status",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nmsg.payload = device.status;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "9724c3dc9765b548"
+            ]
+        ]
+    },
+    {
+        "id": "9724c3dc9765b548",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "191d94f2bbfad098",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-01 Status display",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 660,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8cf216879bd74197",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Temperature",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nconst temperature = device.metrics?.temp_c;\n\nmsg.payload = typeof temperature === \"number\"\n    ? `${temperature.toFixed(1)} °C`\n    : \"Unavailable\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 440,
+        "wires": [
+            [
+                "9b19ec6e1af33c80"
+            ]
+        ]
+    },
+    {
+        "id": "9b19ec6e1af33c80",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "191d94f2bbfad098",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-01 Temperature display",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "3e1283802da9abd4",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Last update",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nmsg.payload = device.last_seen\n    ? new Date(device.last_seen).toLocaleString(\"en-GB\", {\n        timeZone: \"Europe/Madrid\"\n    })\n    : \"No update yet\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "a1f1ca349208e19a"
+            ]
+        ]
+    },
+    {
+        "id": "a1f1ca349208e19a",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "191d94f2bbfad098",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-01 Last update display",
+        "label": "Last update",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "7a61bb0f256c7f6c",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Active alerts",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\") {\n    return null;\n}\n\nmsg.payload = Object.keys(device.active_alerts ?? {}).length;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "3d191a71f36ef0b6"
+            ]
+        ]
+    },
+    {
+        "id": "3d191a71f36ef0b6",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "191d94f2bbfad098",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-01 Active alerts display",
+        "label": "Active alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "ee630b24d8bed562",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 CPU",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nconst cpu = device.metrics?.cpu_percent;\n\nif (typeof cpu !== \"number\") {\n    return null;\n}\n\nmsg.payload = cpu;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 780,
+        "wires": [
+            [
+                "48d142e0a0c68dfb"
+            ]
+        ]
+    },
+    {
+        "id": "48d142e0a0c68dfb",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 CPU gauge",
+        "group": "9652e64a01bb85da",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CPU",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "505ab69bc2607438",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 RAM",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nconst ram = device.metrics?.ram_percent;\n\nif (typeof ram !== \"number\") {\n    return null;\n}\n\nmsg.payload = ram;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 820,
+        "wires": [
+            [
+                "db95ab893f85e2e6"
+            ]
+        ]
+    },
+    {
+        "id": "db95ab893f85e2e6",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 RAM gauge",
+        "group": "9652e64a01bb85da",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "RAM",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "61db7bed969587ab",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Disk",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nconst disk = device.metrics?.disk_percent;\n\nif (typeof disk !== \"number\") {\n    return null;\n}\n\nmsg.payload = disk;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 860,
+        "wires": [
+            [
+                "853f8cdf22648cf6"
+            ]
+        ]
+    },
+    {
+        "id": "853f8cdf22648cf6",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Disk gauge",
+        "group": "9652e64a01bb85da",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Disk",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e7d85cdd76e0917",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Status",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nmsg.payload = device.status;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 900,
+        "wires": [
+            [
+                "c0e5b87c34cf8710"
+            ]
+        ]
+    },
+    {
+        "id": "c0e5b87c34cf8710",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "9652e64a01bb85da",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-02 Status display",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 660,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "def22a9eb724a936",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Temperature",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nconst temperature = device.metrics?.temp_c;\n\nmsg.payload = typeof temperature === \"number\"\n    ? `${temperature.toFixed(1)} °C`\n    : \"Unavailable\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 940,
+        "wires": [
+            [
+                "4b83b5e582a2e181"
+            ]
+        ]
+    },
+    {
+        "id": "4b83b5e582a2e181",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "9652e64a01bb85da",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-02 Temperature display",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ea5310a791a1203c",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Last update",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nmsg.payload = device.last_seen\n    ? new Date(device.last_seen).toLocaleString(\"en-GB\", {\n        timeZone: \"Europe/Madrid\"\n    })\n    : \"No update yet\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 980,
+        "wires": [
+            [
+                "552c1e66c65d184f"
+            ]
+        ]
+    },
+    {
+        "id": "552c1e66c65d184f",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "9652e64a01bb85da",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-02 Last update display",
+        "label": "Last update",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "781fbd910354e100",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Active alerts",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\") {\n    return null;\n}\n\nmsg.payload = Object.keys(device.active_alerts ?? {}).length;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1020,
+        "wires": [
+            [
+                "843a309921c91ca1"
+            ]
+        ]
+    },
+    {
+        "id": "843a309921c91ca1",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "9652e64a01bb85da",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-02 Active alerts display",
+        "label": "Active alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "f7cb370c8f19ff26",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 RAM",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nconst ram = device.metrics?.ram_percent;\n\nif (typeof ram !== \"number\") {\n    return null;\n}\n\nmsg.payload = ram;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1320,
+        "wires": [
+            [
+                "8a25173097250c85"
+            ]
+        ]
+    },
+    {
+        "id": "a678fb415c4a7011",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 CPU",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nconst cpu = device.metrics?.cpu_percent;\n\nif (typeof cpu !== \"number\") {\n    return null;\n}\n\nmsg.payload = cpu;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1280,
+        "wires": [
+            [
+                "3a8c0cf6a1b7e3ee"
+            ]
+        ]
+    },
+    {
+        "id": "3a8c0cf6a1b7e3ee",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 CPU gauge",
+        "group": "c2c025a872801212",
+        "order": 1,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "CPU",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 1280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8a25173097250c85",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 RAM gauge",
+        "group": "c2c025a872801212",
+        "order": 2,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "RAM",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 1320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f8e3f4c1c2a5557e",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Disk",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nconst disk = device.metrics?.disk_percent;\n\nif (typeof disk !== \"number\") {\n    return null;\n}\n\nmsg.payload = disk;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1360,
+        "wires": [
+            [
+                "6b1962e814163192"
+            ]
+        ]
+    },
+    {
+        "id": "6b1962e814163192",
+        "type": "ui-gauge",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Disk gauge",
+        "group": "c2c025a872801212",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Disk",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "%",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "60",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "80",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "100",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 650,
+        "y": 1360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fe41182d1bc03135",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Status",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nmsg.payload = device.status;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 1400,
+        "wires": [
+            [
+                "d198627fd08cddcb"
+            ]
+        ]
+    },
+    {
+        "id": "d198627fd08cddcb",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "c2c025a872801212",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-03 Status display",
+        "label": "Status",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 660,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "b2b08944768db23e",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Temperature",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nconst temperature = device.metrics?.temp_c;\n\nmsg.payload = typeof temperature === \"number\"\n    ? `${temperature.toFixed(1)} °C`\n    : \"Unavailable\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1440,
+        "wires": [
+            [
+                "694d33dea7bfcffd"
+            ]
+        ]
+    },
+    {
+        "id": "694d33dea7bfcffd",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "c2c025a872801212",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-03 Temperature display",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 1440,
+        "wires": []
+    },
+    {
+        "id": "e2f3066059f683f9",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Last update",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nmsg.payload = device.last_seen\n    ? new Date(device.last_seen).toLocaleString(\"en-GB\", {\n        timeZone: \"Europe/Madrid\"\n    })\n    : \"No update yet\";\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1480,
+        "wires": [
+            [
+                "984fec6aa0481591"
+            ]
+        ]
+    },
+    {
+        "id": "984fec6aa0481591",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "c2c025a872801212",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-03 Last update display",
+        "label": "Last update",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "734b48f3bc98381c",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Active alerts",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\") {\n    return null;\n}\n\nmsg.payload = Object.keys(device.active_alerts ?? {}).length;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 1520,
+        "wires": [
+            [
+                "d182f694a4468cd7"
+            ]
+        ]
+    },
+    {
+        "id": "d182f694a4468cd7",
+        "type": "ui-text",
+        "z": "a7b49e5e7d2d312e",
+        "group": "c2c025a872801212",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "sim-03 Active alerts display",
+        "label": "Active alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "payload",
+        "valueType": "msg",
+        "x": 680,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "d3146d31559b364f",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-01 Chart data",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-01\" || !device.metrics) {\n    return null;\n}\n\nconst timestamp = Date.parse(device.last_seen);\n\nif (!Number.isFinite(timestamp)) {\n    return null;\n}\n\n// State messages can repeat the same measurement.\nif (context.get(\"lastTimestamp\") === timestamp) {\n    return null;\n}\ncontext.set(\"lastTimestamp\", timestamp);\n\nconst fields = [\n    [\"CPU\", \"cpu_percent\"],\n    [\"RAM\", \"ram_percent\"],\n    [\"Disk\", \"disk_percent\"]\n];\n\nconst messages = fields\n    .filter(([, key]) => typeof device.metrics[key] === \"number\")\n    .map(([label, key]) => ({\n        topic: label,\n        payload: device.metrics[key],\n        timestamp\n    }));\n\nreturn [messages];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 560,
+        "wires": [
+            [
+                "641962e840062a82"
+            ]
+        ]
+    },
+    {
+        "id": "641962e840062a82",
+        "type": "ui-chart",
+        "z": "a7b49e5e7d2d312e",
+        "group": "191d94f2bbfad098",
+        "name": " sim-01 Live chart",
+        "label": "Live resource usage (%)",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time",
+        "xAxisProperty": "timestamp",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "Usage (%)",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "100",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "10",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 650,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6b7d81f7c8f844b4",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-02 Chart data",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-02\" || !device.metrics) {\n    return null;\n}\n\nconst timestamp = Date.parse(device.last_seen);\n\nif (!Number.isFinite(timestamp)) {\n    return null;\n}\n\n// State messages can repeat the same measurement.\nif (context.get(\"lastTimestamp\") === timestamp) {\n    return null;\n}\ncontext.set(\"lastTimestamp\", timestamp);\n\nconst fields = [\n    [\"CPU\", \"cpu_percent\"],\n    [\"RAM\", \"ram_percent\"],\n    [\"Disk\", \"disk_percent\"]\n];\n\nconst messages = fields\n    .filter(([, key]) => typeof device.metrics[key] === \"number\")\n    .map(([label, key]) => ({\n        topic: label,\n        payload: device.metrics[key],\n        timestamp\n    }));\n\nreturn [messages];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1060,
+        "wires": [
+            [
+                "663629f9ead84dfe"
+            ]
+        ]
+    },
+    {
+        "id": "663629f9ead84dfe",
+        "type": "ui-chart",
+        "z": "a7b49e5e7d2d312e",
+        "group": "9652e64a01bb85da",
+        "name": " sim-02 Live chart",
+        "label": "Live resource usage (%)",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time",
+        "xAxisProperty": "timestamp",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "Usage (%)",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "100",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "10",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 650,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "758fe74d7a74b1b7",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "sim-03 Chart data",
+        "func": "const device = msg.payload;\n\nif (device.hostname !== \"sim-03\" || !device.metrics) {\n    return null;\n}\n\nconst timestamp = Date.parse(device.last_seen);\n\nif (!Number.isFinite(timestamp)) {\n    return null;\n}\n\n// State messages can repeat the same measurement.\nif (context.get(\"lastTimestamp\") === timestamp) {\n    return null;\n}\ncontext.set(\"lastTimestamp\", timestamp);\n\nconst fields = [\n    [\"CPU\", \"cpu_percent\"],\n    [\"RAM\", \"ram_percent\"],\n    [\"Disk\", \"disk_percent\"]\n];\n\nconst messages = fields\n    .filter(([, key]) => typeof device.metrics[key] === \"number\")\n    .map(([label, key]) => ({\n        topic: label,\n        payload: device.metrics[key],\n        timestamp\n    }));\n\nreturn [messages];",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1560,
+        "wires": [
+            [
+                "3362f228293f1082"
+            ]
+        ]
+    },
+    {
+        "id": "3362f228293f1082",
+        "type": "ui-chart",
+        "z": "a7b49e5e7d2d312e",
+        "group": "c2c025a872801212",
+        "name": " sim-03 Live chart",
+        "label": "Live resource usage (%)",
+        "order": 9007199254740991,
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "Time",
+        "xAxisProperty": "timestamp",
+        "xAxisPropertyType": "msg",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "Usage (%)",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "0",
+        "ymax": "100",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": "1",
+        "showLegend": true,
+        "removeOlder": "10",
+        "removeOlderUnit": "60",
+        "removeOlderPoints": "",
+        "colors": [
+            "#0095ff",
+            "#ff0000",
+            "#ff7f0e",
+            "#2ca02c",
+            "#a347e1",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "width": 6,
+        "height": 8,
+        "className": "",
+        "interpolation": "linear",
+        "x": 650,
+        "y": 1560,
+        "wires": [
+            []
+        ]
+    }
+]
