@@ -21,7 +21,8 @@ services:
       - mosquitto
 
   nodered:
-    image: nodered/node-red:4.0
+    build: ./nodered
+    image: edgewatcher-nodered:local
     ports:
       - "1880:1880"
     environment:

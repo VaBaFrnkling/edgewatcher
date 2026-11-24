@@ -65,3 +65,7 @@ Edge Device Quick Start below.
 ## Team
 
 Frank · Eron · Iliya
+
+## Node-RED dashboard
+
+Open http://localhost:1880/dashboard/fleet. The Alerts, Device and Rules pages are available in the navigation menu. The custom Node-RED image installs FlowFuse Dashboard automatically; flows and the alert recovery cache use the existing nodered/data bind mount. See [Node-RED operation and verification](doc/NodeRED_Verification.md).
