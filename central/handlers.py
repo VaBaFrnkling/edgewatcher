@@ -96,5 +96,5 @@ def on_message(c, userdata, msg):
             elif kind == "rules/ack":
                 _handle_ack(h, d, p)
             publish_state(h)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"Error handling {msg.topic}: {e!r}", flush=True)
