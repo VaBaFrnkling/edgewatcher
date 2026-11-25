@@ -55,12 +55,9 @@ The sim-03 retry test resaved its existing empty rule set (version 2 to 3); it c
 
 ## Dashboard redesign (25 November)
 
-The four pages were restyled after the checks above. The data flow, MQTT topics, HTTP calls, validation and save logic are unchanged, except for these two changes on the Fleet page:
+The four pages were restyled after the checks above. The data flow, MQTT topics, HTTP calls, validation and save logic are unchanged, except on the Fleet page: the 48 fixed nodes for sim-01/02/03 (functions, gauges, texts, charts) and their three groups were replaced by one template, and the device-discovery function now handles every hostname instead of skipping the three simulators. Gauges and charts are now drawn by the template instead of the ui-gauge and ui-chart nodes.
 
-- The 48 fixed nodes for sim-01/02/03 (functions, gauges, texts, charts) and their three groups were replaced by one template. The device-discovery function now handles every hostname instead of skipping the three simulators.
-- Active alerts on Fleet cards are now counted correctly. The Central Service sends active_alerts as an object, and the previous card for additional devices always showed 0.
-
-Gauges and charts are now drawn by the template instead of the ui-gauge and ui-chart nodes.
+On the Alerts page, the saved-event count is shown in the table header, so the third output of the deduplication function (the old count text) is no longer connected.
 
 | Check after the redesign | Result |
 |---|---|
