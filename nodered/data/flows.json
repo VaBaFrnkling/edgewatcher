@@ -5,8 +5,29 @@
         "label": "Fleet",
         "disabled": false,
         "info": "",
-        "env": [],
-        "wires": []
+        "env": []
+    },
+    {
+        "id": "ew_alerts_tab",
+        "type": "tab",
+        "label": "Alerts",
+        "disabled": false,
+        "info": "EdgeWatcher Alerts — real Central Service integration."
+    },
+    {
+        "id": "ew_device_tab",
+        "type": "tab",
+        "label": "Device",
+        "disabled": false,
+        "info": "EdgeWatcher Device — real Central Service integration.",
+        "env": []
+    },
+    {
+        "id": "ew_rules_tab",
+        "type": "tab",
+        "label": "Rules",
+        "disabled": false,
+        "info": "EdgeWatcher Rules — real Central Service integration."
     },
     {
         "id": "b28e9db37a8c35ed",
@@ -37,8 +58,7 @@
         "willPayload": "",
         "willMsg": {},
         "userProps": "",
-        "sessionExpiry": "",
-        "wires": []
+        "sessionExpiry": ""
     },
     {
         "id": "103e252b55f0eb97",
@@ -59,8 +79,7 @@
         "showReconnectNotification": true,
         "notificationDisplayTime": 1,
         "showDisconnectNotification": true,
-        "allowInstall": false,
-        "wires": []
+        "allowInstall": false
     },
     {
         "id": "b49c6e895c83ea9f",
@@ -79,8 +98,7 @@
             "groupGap": "12px",
             "groupBorderRadius": "4px",
             "widgetGap": "12px"
-        },
-        "wires": []
+        }
     },
     {
         "id": "efb167df9577d141",
@@ -117,8 +135,160 @@
         "order": 1,
         "className": "",
         "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ew_alerts_page",
+        "type": "ui-page",
+        "name": "Alerts",
+        "ui": "103e252b55f0eb97",
+        "path": "/alerts",
+        "icon": "bell",
+        "layout": "grid",
+        "theme": "b49c6e895c83ea9f",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ew_alerts_group",
+        "type": "ui-group",
+        "name": "Alerts",
+        "page": "ew_alerts_page",
+        "width": 12,
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
         "disabled": "false",
-        "wires": []
+        "groupType": "default",
+        "keepLoaded": true
+    },
+    {
+        "id": "ew_device_page",
+        "type": "ui-page",
+        "name": "Device",
+        "ui": "103e252b55f0eb97",
+        "path": "/device",
+        "icon": "monitor",
+        "layout": "grid",
+        "theme": "b49c6e895c83ea9f",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 3,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ew_device_group",
+        "type": "ui-group",
+        "name": "Device",
+        "page": "ew_device_page",
+        "width": 12,
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": true
+    },
+    {
+        "id": "ew_rules_page",
+        "type": "ui-page",
+        "name": "Rules",
+        "ui": "103e252b55f0eb97",
+        "path": "/rules",
+        "icon": "tune",
+        "layout": "grid",
+        "theme": "b49c6e895c83ea9f",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 4,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "ew_rules_group",
+        "type": "ui-group",
+        "name": "Rules",
+        "page": "ew_rules_page",
+        "width": 12,
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": true
+    },
+    {
+        "id": "ew_fleet_extra_group",
+        "type": "ui-group",
+        "name": "Fleet",
+        "page": "efb167df9577d141",
+        "width": 12,
+        "height": 1,
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default",
+        "keepLoaded": true
     },
     {
         "id": "272a1e7e71b392c8",
@@ -160,59 +330,60 @@
         "wires": []
     },
     {
-        "id": "ew_alerts_tab",
-        "type": "tab",
-        "label": "Alerts",
-        "disabled": false,
-        "info": "EdgeWatcher Alerts — real Central Service integration.",
-        "wires": []
-    },
-    {
-        "id": "ew_alerts_page",
-        "type": "ui-page",
-        "name": "Alerts",
-        "ui": "103e252b55f0eb97",
-        "path": "/alerts",
-        "icon": "bell",
-        "layout": "grid",
-        "theme": "b49c6e895c83ea9f",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 2,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "wires": []
-    },
-    {
-        "id": "ew_alerts_group",
-        "type": "ui-group",
-        "name": "Alerts",
-        "page": "ew_alerts_page",
-        "width": 12,
-        "height": 1,
+        "id": "ew_fleet_extra_ui",
+        "type": "ui-template",
+        "z": "a7b49e5e7d2d312e",
+        "group": "ew_fleet_extra_group",
+        "page": "",
+        "ui": "",
+        "name": "Fleet devices",
         "order": 1,
-        "showTitle": false,
+        "width": 12,
+        "height": 0,
+        "head": "",
+        "format": "<template>\n <section class=\"ew-fleet\">\n  <header class=\"ew-f-head\">\n   <div>\n    <h2>Fleet</h2>\n    <p class=\"ew-f-sub\">Live state of every device. New devices appear automatically when they connect.</p>\n   </div>\n   <div class=\"ew-f-chips\">\n    <span class=\"ew-f-chip\">Devices <b>{{ devices.length }}</b></span>\n    <span class=\"ew-f-chip is-ok\"><i></i>Online <b>{{ online }}</b></span>\n    <span class=\"ew-f-chip\" :class=\"offline?'is-err':''\"><i></i>Offline <b>{{ offline }}</b></span>\n    <span class=\"ew-f-chip\" :class=\"totalAlerts?'is-err':''\">Active alerts <b>{{ totalAlerts }}</b></span>\n   </div>\n  </header>\n\n  <div v-if=\"!devices.length\" class=\"ew-f-card ew-f-empty\">Waiting for devices… They will appear here as soon as the Central Service reports their state.</div>\n\n  <div class=\"ew-f-grid\">\n   <article v-for=\"d in devices\" :key=\"d.hostname\" class=\"ew-f-card\" :class=\"{off: d.status!=='ONLINE'}\">\n    <div class=\"ew-f-card-head\">\n     <div>\n      <h3>{{ d.hostname }}</h3>\n      <p class=\"ew-f-meta\">{{ d.os || 'OS not reported' }} · {{ d.simulated ? 'Simulated' : 'Device' }}</p>\n     </div>\n     <span class=\"ew-f-chip\" :class=\"d.status==='ONLINE'?'is-ok':'is-err'\"><i></i>{{ d.status || 'UNKNOWN' }}</span>\n    </div>\n\n    <div class=\"ew-f-stats\">\n     <div><span>Temperature</span><b>{{ number(d.metrics?.temp_c) }}<small v-if=\"typeof d.metrics?.temp_c==='number'\"> °C</small></b></div>\n     <div><span>Last update</span><b :title=\"d.last_seen ? new Date(d.last_seen).toLocaleString() : ''\">{{ ago(d.last_seen) }}</b></div>\n     <div><span>Active alerts</span><b><span class=\"ew-f-badge\" :class=\"alerts(d)?'is-err':'is-ok'\">{{ alerts(d) }}</span></b></div>\n    </div>\n\n    <div class=\"ew-f-gauges\">\n     <div v-for=\"s in series\" :key=\"s.key\" class=\"ew-f-gauge\">\n      <svg viewBox=\"0 0 180 104\" role=\"img\" :aria-label=\"s.label+' '+number(d.metrics?.[s.key])+' percent'\">\n       <path d=\"M14 92 A76 76 0 0 1 166 92\" pathLength=\"100\" fill=\"none\" stroke=\"#eef0f3\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n       <path v-if=\"typeof d.metrics?.[s.key]==='number'\" d=\"M14 92 A76 76 0 0 1 166 92\" pathLength=\"100\" fill=\"none\" :stroke=\"level(d, d.metrics[s.key])\" stroke-width=\"12\" stroke-linecap=\"round\" :stroke-dasharray=\"Math.max(0.5,Math.min(100,d.metrics[s.key]))+' 100'\"/>\n       <text x=\"90\" y=\"80\" text-anchor=\"middle\" class=\"ew-f-gval\">{{ number(d.metrics?.[s.key]) }}<tspan class=\"ew-f-gunit\" v-if=\"typeof d.metrics?.[s.key]==='number'\">%</tspan></text>\n      </svg>\n      <span class=\"ew-f-glabel\"><i :style=\"{background:s.color}\"></i>{{ s.label }}</span>\n     </div>\n    </div>\n\n    <div class=\"ew-f-chart-head\">\n     <h4>Last 10 minutes</h4>\n     <div class=\"ew-f-legend\"><span v-for=\"s in series\" :key=\"s.key\"><i :style=\"{background:s.color}\"></i>{{ s.label }}</span></div>\n    </div>\n    <svg v-if=\"(d.samples||[]).length>1\" class=\"ew-f-chart\" viewBox=\"0 0 600 200\" role=\"img\" :aria-label=\"'Live resource history for '+d.hostname\">\n     <g v-for=\"v in [0,25,50,75,100]\" :key=\"v\">\n      <line x1=\"40\" :y1=\"y(v)\" x2=\"592\" :y2=\"y(v)\" :stroke=\"v===0?'#cfd3da':'#eef0f3'\"/>\n      <text x=\"32\" :y=\"y(v)+4\" text-anchor=\"end\" class=\"ew-f-axis\">{{ v }}%</text>\n     </g>\n     <text v-for=\"(t,i) in ticks(d.samples)\" :key=\"i\" :x=\"t.x\" y=\"192\" :text-anchor=\"i===0?'start':i===2?'end':'middle'\" class=\"ew-f-axis\">{{ t.label }}</text>\n     <polyline v-for=\"s in series\" :key=\"s.key\" :points=\"points(d.samples, s.key)\" fill=\"none\" :stroke=\"s.color\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/>\n    </svg>\n    <p v-else class=\"ew-f-nochart\">Collecting live samples…</p>\n   </article>\n  </div>\n </section>\n</template>\n\n<script>\nexport default {\n data(){return {devices:[],now:Date.now(),timer:null,\n  series:[{label:'CPU',key:'cpu_percent',color:'#0d74ce'},{label:'RAM',key:'ram_percent',color:'#d7353e'},{label:'Disk',key:'disk_percent',color:'#e09b2d'}]};},\n computed:{\n  online(){return this.devices.filter(d=>d.status==='ONLINE').length;},\n  offline(){return this.devices.length-this.online;},\n  totalAlerts(){return this.devices.reduce((n,d)=>n+this.alerts(d),0);}\n },\n mounted(){this.send({payload:{action:'refresh'}});this.timer=setInterval(()=>{this.now=Date.now();},5000);},\n beforeUnmount(){clearInterval(this.timer);},\n watch:{msg:{immediate:true,handler(m){if(m?.payload?.kind==='fleet')this.devices=m.payload.devices;}}},\n methods:{\n  number(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(1):'—';},\n  alerts(d){const a=d.active_alerts;return Array.isArray(a)?a.length:(a&&typeof a==='object')?Object.keys(a).length:0;},\n  level(d,v){if(d.status!=='ONLINE')return '#b8bec8';return v>=80?'#d7353e':v>=60?'#e09b2d':'#2e9e4f';},\n  ago(ts){const t=Date.parse(ts);if(!Number.isFinite(t))return 'Waiting for metrics';const s=Math.max(0,Math.round((this.now-t)/1000));\n   if(s<60)return s+' s ago';if(s<3600)return Math.round(s/60)+' min ago';return new Date(t).toLocaleString();},\n  y(v){return 170-v*1.5;},\n  ticks(rows){const s=Date.parse(rows[0].ts),e=Date.parse(rows[rows.length-1].ts);\n   return [0,1,2].map(i=>({x:40+552*i/2,label:new Date(s+(e-s)*i/2).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}));},\n  points(rows,key){const start=Date.parse(rows[0].ts),span=Math.max(1,Date.parse(rows[rows.length-1].ts)-start);\n   return rows.filter(r=>Number.isFinite(r[key])).map(r=>(40+(Date.parse(r.ts)-start)*552/span).toFixed(1)+','+this.y(Math.min(100,Math.max(0,r[key]))).toFixed(1)).join(' ');}\n }\n};\n</script>\n\n<style>\n.ew-fleet{--ew-blue:#0d74ce;--ew-line:#e3e5ea;--ew-muted:#6b7280;padding:4px 4px 8px;display:flex;flex-direction:column;gap:16px;font-size:14px;color:inherit}\n.ew-fleet h2{margin:0;font-size:20px;font-weight:600}\n.ew-fleet h3{margin:0;font-size:17px;font-weight:600}\n.ew-fleet h4{margin:0;font-size:13px;font-weight:600;color:#374151}\n.ew-fleet .ew-f-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}\n.ew-fleet .ew-f-sub{margin:4px 0 0;color:var(--ew-muted);font-size:13px}\n.ew-fleet .ew-f-chips{display:flex;flex-wrap:wrap;gap:8px}\n.ew-fleet .ew-f-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:#f1f3f6;font-size:13px;color:#374151;white-space:nowrap}\n.ew-fleet .ew-f-chip i{width:8px;height:8px;border-radius:50%;background:currentColor}\n.ew-fleet .ew-f-chip.is-ok{background:#e7f6ec;color:#1d6b35}\n.ew-fleet .ew-f-chip.is-err{background:#fdecee;color:#b92832}\n.ew-fleet .ew-f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}\n.ew-fleet .ew-f-card{border:1px solid var(--ew-line);border-radius:10px;padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:14px;min-width:0;transition:opacity .2s}\n.ew-fleet .ew-f-card.off{opacity:.7}\n.ew-fleet .ew-f-empty{color:var(--ew-muted);text-align:center;padding:36px}\n.ew-fleet .ew-f-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}\n.ew-fleet .ew-f-meta{margin:3px 0 0;color:var(--ew-muted);font-size:13px}\n.ew-fleet .ew-f-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #f0f1f4;border-radius:8px;background:#fafbfc}\n.ew-fleet .ew-f-stats>div{display:flex;flex-direction:column;gap:4px;padding:10px 14px;border-right:1px solid #f0f1f4;min-width:0}\n.ew-fleet .ew-f-stats>div:last-child{border-right:0}\n.ew-fleet .ew-f-stats>div>span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted)}\n.ew-fleet .ew-f-stats b{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.ew-fleet .ew-f-stats b small{font-size:13px;color:var(--ew-muted);font-weight:500}\n.ew-fleet .ew-f-badge{display:inline-block;min-width:26px;padding:1px 8px;border-radius:999px;text-align:center;font-size:13px;text-transform:none;letter-spacing:0}\n.ew-fleet .ew-f-badge.is-ok{background:#e7f6ec;color:#1d6b35}\n.ew-fleet .ew-f-badge.is-err{background:#fdecee;color:#b92832}\n.ew-fleet .ew-f-gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}\n.ew-fleet .ew-f-gauge{display:flex;flex-direction:column;align-items:center;gap:2px}\n.ew-fleet .ew-f-gauge svg{width:100%;max-width:170px;display:block}\n.ew-fleet .ew-f-gval{font-size:28px;font-weight:600;fill:#1f2937;font-variant-numeric:tabular-nums}\n.ew-fleet .ew-f-gunit{font-size:15px;fill:#6b7280;font-weight:500}\n.ew-fleet .ew-f-glabel{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted)}\n.ew-fleet .ew-f-glabel i,.ew-fleet .ew-f-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}\n.ew-fleet .ew-f-chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid #f0f1f4}\n.ew-fleet .ew-f-legend{display:flex;gap:14px;font-size:12px;color:#374151}\n.ew-fleet .ew-f-legend span{display:flex;align-items:center;gap:6px}\n.ew-fleet .ew-f-chart{display:block;width:100%;height:auto}\n.ew-fleet .ew-f-axis{font-size:11px;fill:#6b7280}\n.ew-fleet .ew-f-nochart{margin:0;padding:30px 0;text-align:center;color:var(--ew-muted);font-size:13px}\n</style>\n",
+        "noerr": 0,
+        "storeOutMessages": false,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
         "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default",
-        "keepLoaded": true,
+        "x": 710,
+        "y": 1740,
+        "wires": [
+            [
+                "ew_fleet_extra_cache"
+            ]
+        ]
+    },
+    {
+        "id": "ew_fleet_extra_cache",
+        "type": "function",
+        "z": "a7b49e5e7d2d312e",
+        "name": "Fleet state · bounded live samples",
+        "func": "\nlet devices=context.get('devices')||{};\nconst p=msg.payload;\nif(p?.hostname){\n const d=devices[p.hostname]||{samples:[]};\n const ts=Date.parse(p.last_seen),last=d.samples[d.samples.length-1];\n if(p.status==='ONLINE'&&Number.isFinite(ts)&&p.metrics&&(!last||last.ts!==p.last_seen))d.samples.push({ts:p.last_seen,...p.metrics});\n d.samples=d.samples.filter(r=>Date.parse(r.ts)>=Date.now()-600000).slice(-121);\n devices[p.hostname]={...p,samples:d.samples};context.set('devices',devices);\n}\nreturn {payload:{kind:'fleet',devices:Object.values(devices).sort((a,b)=>a.hostname.localeCompare(b.hostname))}};",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "context.set('devices',{});",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1740,
+        "wires": [
+            [
+                "ew_fleet_extra_ui"
+            ]
+        ]
+    },
+    {
+        "id": "ew_doc_a7b49e5e7d2d312e",
+        "type": "comment",
+        "z": "a7b49e5e7d2d312e",
+        "name": "EdgeWatcher · configuration and verification",
+        "info": "Dashboard: /dashboard/fleet\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
+        "x": 400,
+        "y": 40,
         "wires": []
     },
     {
@@ -302,7 +473,8 @@
         "width": 12,
         "height": 0,
         "head": "",
-        "format": "<template>\n <section class=\"ew-alerts\">\n  <div class=\"ew-a-card\">\n   <div class=\"ew-a-head\">\n    <h3>Alert events <small>{{rows.length}} saved (latest 500)</small></h3>\n    <div class=\"ew-a-tools\">\n     <div class=\"ew-a-seg\" role=\"group\" aria-label=\"Filter by state\">\n      <button v-for=\"f in filters\" :key=\"f.v\" :class=\"{on: stateFilter===f.v}\" @click=\"stateFilter=f.v;page=1\">{{f.t}} <b>{{countOf(f.v)}}</b></button>\n     </div>\n     <input class=\"ew-a-search\" v-model=\"search\" @input=\"page=1\" type=\"search\" placeholder=\"Search device, rule, metric…\" aria-label=\"Search alerts\">\n    </div>\n   </div>\n\n   <div class=\"ew-a-scroll\">\n    <table class=\"ew-a-table\">\n     <thead><tr><th>Time</th><th>Device</th><th>State</th><th>Severity</th><th>Rule</th><th>Metric</th><th class=\"num\">Value</th><th class=\"num\">Threshold</th></tr></thead>\n     <tbody>\n      <tr v-for=\"r in pageRows\" :key=\"r.alert_id || (r.ts + r.rule_id + r.state)\">\n       <td class=\"ew-a-time\">{{fmtTime(r.ts)}}</td>\n       <td class=\"ew-a-strong\">{{r.hostname}}</td>\n       <td><span class=\"ew-a-pill\" :class=\"r.state==='FIRING'?'st-firing':'st-resolved'\"><i></i>{{r.state}}</span></td>\n       <td><span class=\"ew-a-sev\" :class=\"'sev-'+r.severity\">{{r.severity || '—'}}</span></td>\n       <td>{{r.name}}</td>\n       <td><code>{{r.metric}}</code></td>\n       <td class=\"num\">{{fmtNum(r.value)}}</td>\n       <td class=\"num ew-a-muted\">{{fmtNum(r.threshold)}}</td>\n      </tr>\n      <tr v-if=\"!pageRows.length\"><td colspan=\"8\" class=\"ew-a-empty\">{{rows.length ? 'No alerts match the current filter.' : 'No alerts yet. New FIRING and RESOLVED events will appear here.'}}</td></tr>\n     </tbody>\n    </table>\n   </div>\n\n   <div class=\"ew-a-foot\">\n    <label>Rows per page\n     <select v-model.number=\"perPage\" @change=\"page=1\"><option v-for=\"o in options\" :key=\"o\" :value=\"o\">{{o}}</option></select>\n    </label>\n    <span class=\"ew-a-range\">{{rangeText}}</span>\n    <div class=\"ew-a-pager\">\n     <button :disabled=\"page<=1\" @click=\"page=1\" aria-label=\"First page\">«</button>\n     <button :disabled=\"page<=1\" @click=\"page--\" aria-label=\"Previous page\">‹</button>\n     <span>Page {{page}} of {{pages}}</span>\n     <button :disabled=\"page>=pages\" @click=\"page++\" aria-label=\"Next page\">›</button>\n     <button :disabled=\"page>=pages\" @click=\"page=pages\" aria-label=\"Last page\">»</button>\n    </div>\n   </div>\n  </div>\n </section>\n</template>\n\n<script>\nexport default {\n data() {\n  return {\n   search: '',\n   stateFilter: 'ALL',\n   page: 1,\n   perPage: 25,                                            // filas al abrir la página\n   options: [25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500],\n   filters: [{v: 'ALL', t: 'All'}, {v: 'FIRING', t: 'Firing'}, {v: 'RESOLVED', t: 'Resolved'}]\n  };\n },\n computed: {\n  rows() { return Array.isArray(this.msg?.payload) ? this.msg.payload : []; },\n  filtered() {\n   const q = this.search.trim().toLowerCase();\n   return this.rows.filter(r =>\n    (this.stateFilter === 'ALL' || r.state === this.stateFilter) &&\n    (!q || [r.hostname, r.state, r.severity, r.name, r.metric, r.value, r.threshold]\n      .some(v => String(v ?? '').toLowerCase().includes(q))));\n  },\n  pages() { return Math.max(1, Math.ceil(this.filtered.length / this.perPage)); },\n  pageRows() { const s = (Math.min(this.page, this.pages) - 1) * this.perPage; return this.filtered.slice(s, s + this.perPage); },\n  rangeText() {\n   const n = this.filtered.length; if (!n) return '0 of 0';\n   const s = (Math.min(this.page, this.pages) - 1) * this.perPage;\n   return (s + 1) + '–' + Math.min(s + this.perPage, n) + ' of ' + n;\n  }\n },\n watch: { pages(p) { if (this.page > p) this.page = p; } },\n methods: {\n  countOf(v) { return v === 'ALL' ? this.rows.length : this.rows.filter(r => r.state === v).length; },\n  fmtTime(v) { const d = new Date(v); return isNaN(d) ? v : d.toLocaleString(); },\n  fmtNum(v) { return typeof v === 'number' ? (Number.isInteger(v) ? v : v.toFixed(1)) : (v ?? '—'); }\n }\n};\n</script>\n\n<style>\n.ew-alerts{--ew-blue:#0d74ce;--ew-line:#e3e5ea;--ew-muted:#6b7280;padding:4px;font-size:14px}\n.ew-alerts .ew-a-card{border:1px solid var(--ew-line);border-radius:10px;padding:16px 18px;background:#fff}\n.ew-alerts .ew-a-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}\n.ew-alerts h3{margin:0;font-size:15px;font-weight:600;display:flex;align-items:baseline;gap:8px}\n.ew-alerts h3 small{font-weight:400;color:var(--ew-muted);font-size:13px}\n.ew-alerts .ew-a-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px}\n.ew-alerts .ew-a-search{height:36px;width:280px;max-width:100%;padding:0 12px;border:1px solid #cfd3da;border-radius:8px;background:#fff;font-size:14px;color:inherit;box-sizing:border-box}\n.ew-alerts .ew-a-search:focus,.ew-alerts select:focus{outline:none;border-color:var(--ew-blue);box-shadow:0 0 0 3px rgba(13,116,206,.15)}\n.ew-alerts .ew-a-seg{display:inline-flex;border:1px solid #cfd3da;border-radius:8px;overflow:hidden}\n.ew-alerts .ew-a-seg button{height:34px;padding:0 12px;border:0;border-right:1px solid #cfd3da;background:#fff;color:#374151;font-size:13px;cursor:pointer}\n.ew-alerts .ew-a-seg button:last-child{border-right:0}\n.ew-alerts .ew-a-seg button b{font-weight:600;color:var(--ew-muted);margin-left:2px}\n.ew-alerts .ew-a-seg button.on{background:#e8f1fb;color:#0d5ea8}\n.ew-alerts .ew-a-seg button.on b{color:#0d5ea8}\n.ew-alerts .ew-a-scroll{overflow:auto}\n.ew-alerts .ew-a-table{width:100%;border-collapse:collapse}\n.ew-alerts .ew-a-table th{padding:8px 10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted);border-bottom:1px solid var(--ew-line);text-align:left;white-space:nowrap}\n.ew-alerts .ew-a-table td{padding:10px;border-bottom:1px solid #f0f1f4;vertical-align:middle;white-space:nowrap}\n.ew-alerts .ew-a-table tbody tr:hover td{background:#fafbfc}\n.ew-alerts .ew-a-table tbody tr:last-child td{border-bottom:none}\n.ew-alerts .num{text-align:right;font-variant-numeric:tabular-nums}\n.ew-alerts .ew-a-time{color:#374151;font-variant-numeric:tabular-nums}\n.ew-alerts .ew-a-strong{font-weight:600}\n.ew-alerts .ew-a-muted{color:var(--ew-muted)}\n.ew-alerts code{font-size:12.5px;background:#f1f3f6;padding:2px 6px;border-radius:4px}\n.ew-alerts .ew-a-empty{text-align:center;color:var(--ew-muted);padding:28px 10px}\n.ew-alerts .ew-a-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600}\n.ew-alerts .ew-a-pill i{width:7px;height:7px;border-radius:50%;background:currentColor}\n.ew-alerts .ew-a-pill.st-firing{background:#fdecee;color:#b92832}\n.ew-alerts .ew-a-pill.st-resolved{background:#e7f6ec;color:#1d6b35}\n.ew-alerts .ew-a-sev{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;text-transform:capitalize;background:#f1f3f6;color:#374151}\n.ew-alerts .ew-a-sev.sev-low{background:#e8f1fb;color:#0d5ea8}\n.ew-alerts .ew-a-sev.sev-medium{background:#fff4e0;color:#8a5300}\n.ew-alerts .ew-a-sev.sev-high{background:#fdecee;color:#b92832}\n.ew-alerts .ew-a-foot{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;padding-top:12px;margin-top:4px;border-top:1px solid var(--ew-line);color:var(--ew-muted);font-size:13px}\n.ew-alerts .ew-a-foot label{display:flex;align-items:center;gap:8px;white-space:nowrap}\n.ew-alerts .ew-a-foot select{height:32px;padding:0 8px;border:1px solid #cfd3da;border-radius:8px;background:#fff;color:inherit;font-size:13px}\n.ew-alerts .ew-a-pager{display:flex;align-items:center;gap:4px}\n.ew-alerts .ew-a-pager span{padding:0 8px;white-space:nowrap}\n.ew-alerts .ew-a-pager button{width:32px;height:32px;border:1px solid #cfd3da;border-radius:8px;background:#fff;color:#1f2937;font-size:16px;line-height:1;cursor:pointer}\n.ew-alerts .ew-a-pager button:hover:not(:disabled){background:#f3f4f6}\n.ew-alerts .ew-a-pager button:disabled{opacity:.4;cursor:default}\n</style>\n",
+        "format": "<template>\n <section class=\"ew-alerts\">\n  <div class=\"ew-a-card\">\n   <div class=\"ew-a-head\">\n    <h3>Alert events <small>{{rows.length}} saved (latest 500)</small></h3>\n    <div class=\"ew-a-tools\">\n     <div class=\"ew-a-seg\" role=\"group\" aria-label=\"Filter by state\">\n      <button v-for=\"f in filters\" :key=\"f.v\" :class=\"{on: stateFilter===f.v}\" @click=\"stateFilter=f.v;page=1\">{{f.t}} <b>{{countOf(f.v)}}</b></button>\n     </div>\n     <input class=\"ew-a-search\" v-model=\"search\" @input=\"page=1\" type=\"search\" placeholder=\"Search device, rule, metric…\" aria-label=\"Search alerts\">\n    </div>\n   </div>\n\n   <div class=\"ew-a-scroll\">\n    <table class=\"ew-a-table\">\n     <thead><tr><th>Time</th><th>Device</th><th>State</th><th>Severity</th><th>Rule</th><th>Metric</th><th class=\"num\">Value</th><th class=\"num\">Threshold</th></tr></thead>\n     <tbody>\n      <tr v-for=\"r in pageRows\" :key=\"r.alert_id || (r.ts + r.rule_id + r.state)\">\n       <td class=\"ew-a-time\">{{fmtTime(r.ts)}}</td>\n       <td class=\"ew-a-strong\">{{r.hostname}}</td>\n       <td><span class=\"ew-a-pill\" :class=\"r.state==='FIRING'?'st-firing':'st-resolved'\"><i></i>{{r.state}}</span></td>\n       <td><span class=\"ew-a-sev\" :class=\"'sev-'+r.severity\">{{r.severity || '—'}}</span></td>\n       <td>{{r.name}}</td>\n       <td><code>{{r.metric}}</code></td>\n       <td class=\"num\">{{fmtNum(r.value)}}</td>\n       <td class=\"num ew-a-muted\">{{fmtNum(r.threshold)}}</td>\n      </tr>\n      <tr v-if=\"!pageRows.length\"><td colspan=\"8\" class=\"ew-a-empty\">{{rows.length ? 'No alerts match the current filter.' : 'No alerts yet. New FIRING and RESOLVED events will appear here.'}}</td></tr>\n     </tbody>\n    </table>\n   </div>\n\n   <div class=\"ew-a-foot\">\n    <label>Rows per page\n     <select v-model.number=\"perPage\" @change=\"page=1\"><option v-for=\"o in options\" :key=\"o\" :value=\"o\">{{o}}</option></select>\n    </label>\n    <span class=\"ew-a-range\">{{rangeText}}</span>\n    <div class=\"ew-a-pager\">\n     <button :disabled=\"page<=1\" @click=\"page=1\" aria-label=\"First page\">«</button>\n     <button :disabled=\"page<=1\" @click=\"page--\" aria-label=\"Previous page\">‹</button>\n     <span>Page {{page}} of {{pages}}</span>\n     <button :disabled=\"page>=pages\" @click=\"page++\" aria-label=\"Next page\">›</button>\n     <button :disabled=\"page>=pages\" @click=\"page=pages\" aria-label=\"Last page\">»</button>\n    </div>\n   </div>\n  </div>\n </section>\n</template>\n\n<script>\nexport default {\n data() {\n  return {\n   search: '',\n   stateFilter: 'ALL',\n   page: 1,\n   perPage: 25,                                            // filas al abrir la página\n   options: [25, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500],\n   filters: [{v: 'ALL', t: 'All'}, {v: 'FIRING', t: 'Firing'}, {v: 'RESOLVED', t: 'Resolved'}]\n  };\n },\n computed: {\n  rows() { return Array.isArray(this.msg?.payload) ? this.msg.payload : []; },\n  filtered() {\n   const q = this.search.trim().toLowerCase();\n   return this.rows.filter(r =>\n    (this.stateFilter === 'ALL' || r.state === this.stateFilter) &&\n    (!q || [r.hostname, r.state, r.severity, r.name, r.metric, r.value, r.threshold]\n      .some(v => String(v ?? '').toLowerCase().includes(q))));\n  },\n  pages() { return Math.max(1, Math.ceil(this.filtered.length / this.perPage)); },\n  pageRows() { const s = (Math.min(this.page, this.pages) - 1) * this.perPage; return this.filtered.slice(s, s + this.perPage); },\n  rangeText() {\n   const n = this.filtered.length; if (!n) return '0 of 0';\n   const s = (Math.min(this.page, this.pages) - 1) * this.perPage;\n   return (s + 1) + '–' + Math.min(s + this.perPage, n) + ' of ' + n;\n  }\n },\n watch: { pages(p) { if (this.page > p) this.page = p; } },\n methods: {\n  countOf(v) { return v === 'ALL' ? this.rows.length : this.rows.filter(r => r.state === v).length; },\n  fmtTime(v) { const d = new Date(v); return isNaN(d) ? v : d.toLocaleString(); },\n  fmtNum(v) { return typeof v === 'number' ? (Number.isInteger(v) ? v : v.toFixed(1)) : (v ?? '—'); }\n }\n};\n</script>\n\n<style>\n.ew-alerts{--ew-blue:#0d74ce;--ew-line:#e3e5ea;--ew-muted:#6b7280;padding:4px;font-size:14px}\n.ew-alerts .ew-a-card{border:1px solid var(--ew-line);border-radius:10px;padding:16px 18px;background:#fff}\n.ew-alerts .ew-a-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px}\n.ew-alerts h3{margin:0;font-size:15px;font-weight:600;display:flex;align-items:baseline;gap:8px}\n.ew-alerts h3 small{font-weight:400;color:var(--ew-muted);font-size:13px}\n.ew-alerts .ew-a-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px}\n.ew-alerts .ew-a-search{height:36px;width:280px;max-width:100%;padding:0 12px;border:1px solid #cfd3da;border-radius:8px;background:#fff;font-size:14px;color:inherit;box-sizing:border-box}\n.ew-alerts .ew-a-search:focus,.ew-alerts select:focus{outline:none;border-color:var(--ew-blue);box-shadow:0 0 0 3px rgba(13,116,206,.15)}\n.ew-alerts .ew-a-seg{display:inline-flex;border:1px solid #cfd3da;border-radius:8px;overflow:hidden}\n.ew-alerts .ew-a-seg button{height:34px;padding:0 12px;border:0;border-right:1px solid #cfd3da;background:#fff;color:#374151;font-size:13px;cursor:pointer}\n.ew-alerts .ew-a-seg button:last-child{border-right:0}\n.ew-alerts .ew-a-seg button b{font-weight:600;color:var(--ew-muted);margin-left:2px}\n.ew-alerts .ew-a-seg button.on{background:#e8f1fb;color:#0d5ea8}\n.ew-alerts .ew-a-seg button.on b{color:#0d5ea8}\n.ew-alerts .ew-a-scroll{overflow:auto}\n.ew-alerts .ew-a-table{width:100%;border-collapse:collapse}\n.ew-alerts .ew-a-table th{padding:8px 10px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted);border-bottom:1px solid var(--ew-line);text-align:left;white-space:nowrap}\n.ew-alerts .ew-a-table td{padding:10px;border-bottom:1px solid #f0f1f4;vertical-align:middle;white-space:nowrap}\n.ew-alerts .ew-a-table tbody tr:hover td{background:#fafbfc}\n.ew-alerts .ew-a-table tbody tr:last-child td{border-bottom:none}\n.ew-alerts .num{text-align:right;font-variant-numeric:tabular-nums}\n.ew-alerts .ew-a-table th.num{text-align:right}\n.ew-alerts .ew-a-time{color:#374151;font-variant-numeric:tabular-nums}\n.ew-alerts .ew-a-strong{font-weight:600}\n.ew-alerts .ew-a-muted{color:var(--ew-muted)}\n.ew-alerts code{font-size:12.5px;background:#f1f3f6;padding:2px 6px;border-radius:4px}\n.ew-alerts .ew-a-empty{text-align:center;color:var(--ew-muted);padding:28px 10px}\n.ew-alerts .ew-a-pill{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600}\n.ew-alerts .ew-a-pill i{width:7px;height:7px;border-radius:50%;background:currentColor}\n.ew-alerts .ew-a-pill.st-firing{background:#fdecee;color:#b92832}\n.ew-alerts .ew-a-pill.st-resolved{background:#e7f6ec;color:#1d6b35}\n.ew-alerts .ew-a-sev{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;text-transform:capitalize;background:#f1f3f6;color:#374151}\n.ew-alerts .ew-a-sev.sev-low{background:#e8f1fb;color:#0d5ea8}\n.ew-alerts .ew-a-sev.sev-medium{background:#fff4e0;color:#8a5300}\n.ew-alerts .ew-a-sev.sev-high{background:#fdecee;color:#b92832}\n.ew-alerts .ew-a-foot{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px;padding-top:12px;margin-top:4px;border-top:1px solid var(--ew-line);color:var(--ew-muted);font-size:13px}\n.ew-alerts .ew-a-foot label{display:flex;align-items:center;gap:8px;white-space:nowrap}\n.ew-alerts .ew-a-foot select{height:32px;padding:0 8px;border:1px solid #cfd3da;border-radius:8px;background:#fff;color:inherit;font-size:13px}\n.ew-alerts .ew-a-pager{display:flex;align-items:center;gap:4px}\n.ew-alerts .ew-a-pager span{padding:0 8px;white-space:nowrap}\n.ew-alerts .ew-a-pager button{width:32px;height:32px;border:1px solid #cfd3da;border-radius:8px;background:#fff;color:#1f2937;font-size:16px;line-height:1;cursor:pointer}\n.ew-alerts .ew-a-pager button:hover:not(:disabled){background:#f3f4f6}\n.ew-alerts .ew-a-pager button:disabled{opacity:.4;cursor:default}\n</style>",
+        "noerr": 0,
         "storeOutMessages": true,
         "passthru": false,
         "resendOnRefresh": true,
@@ -319,7 +491,6 @@
         "type": "ui-notification",
         "z": "ew_alerts_tab",
         "ui": "103e252b55f0eb97",
-        "name": "Alert popup",
         "position": "top right",
         "colorDefault": true,
         "color": "#0d74ce",
@@ -335,6 +506,7 @@
         "inputLabel": "",
         "raw": false,
         "className": "",
+        "name": "Alert popup",
         "x": 820,
         "y": 140,
         "wires": [
@@ -342,60 +514,13 @@
         ]
     },
     {
-        "id": "ew_device_tab",
-        "type": "tab",
-        "label": "Device",
-        "disabled": false,
-        "info": "EdgeWatcher Device — real Central Service integration.",
-        "wires": [],
-        "env": []
-    },
-    {
-        "id": "ew_device_page",
-        "type": "ui-page",
-        "name": "Device",
-        "ui": "103e252b55f0eb97",
-        "path": "/device",
-        "icon": "monitor",
-        "layout": "grid",
-        "theme": "b49c6e895c83ea9f",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 3,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "wires": []
-    },
-    {
-        "id": "ew_device_group",
-        "type": "ui-group",
-        "name": "Device",
-        "page": "ew_device_page",
-        "width": 12,
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default",
-        "keepLoaded": true,
+        "id": "ew_doc_ew_alerts_tab",
+        "type": "comment",
+        "z": "ew_alerts_tab",
+        "name": "EdgeWatcher · configuration and verification",
+        "info": "Dashboard: /dashboard/alerts\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
+        "x": 400,
+        "y": 40,
         "wires": []
     },
     {
@@ -464,7 +589,6 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "requestTimeout": "15000",
         "x": 760,
         "y": 120,
         "wires": [
@@ -514,59 +638,13 @@
         ]
     },
     {
-        "id": "ew_rules_tab",
-        "type": "tab",
-        "label": "Rules",
-        "disabled": false,
-        "info": "EdgeWatcher Rules — real Central Service integration.",
-        "wires": []
-    },
-    {
-        "id": "ew_rules_page",
-        "type": "ui-page",
-        "name": "Rules",
-        "ui": "103e252b55f0eb97",
-        "path": "/rules",
-        "icon": "tune",
-        "layout": "grid",
-        "theme": "b49c6e895c83ea9f",
-        "breakpoints": [
-            {
-                "name": "Default",
-                "px": "0",
-                "cols": "3"
-            },
-            {
-                "name": "Tablet",
-                "px": "576",
-                "cols": "6"
-            },
-            {
-                "name": "Desktop",
-                "px": "1024",
-                "cols": "12"
-            }
-        ],
-        "order": 4,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "wires": []
-    },
-    {
-        "id": "ew_rules_group",
-        "type": "ui-group",
-        "name": "Rules",
-        "page": "ew_rules_page",
-        "width": 12,
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default",
-        "keepLoaded": true,
+        "id": "ew_doc_ew_device_tab",
+        "type": "comment",
+        "z": "ew_device_tab",
+        "name": "EdgeWatcher · configuration and verification",
+        "info": "Dashboard: /dashboard/device\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
+        "x": 400,
+        "y": 40,
         "wires": []
     },
     {
@@ -635,7 +713,6 @@
         "authType": "",
         "senderr": false,
         "headers": [],
-        "requestTimeout": "15000",
         "x": 760,
         "y": 120,
         "wires": [
@@ -724,99 +801,6 @@
                 "ew_rules_ui"
             ]
         ]
-    },
-    {
-        "id": "ew_fleet_extra_group",
-        "type": "ui-group",
-        "name": "Fleet",
-        "page": "efb167df9577d141",
-        "width": 12,
-        "height": 1,
-        "order": 1,
-        "showTitle": false,
-        "className": "",
-        "visible": "true",
-        "disabled": "false",
-        "groupType": "default",
-        "keepLoaded": true,
-        "wires": []
-    },
-    {
-        "id": "ew_fleet_extra_ui",
-        "type": "ui-template",
-        "z": "a7b49e5e7d2d312e",
-        "group": "ew_fleet_extra_group",
-        "page": "",
-        "ui": "",
-        "name": "Fleet devices",
-        "order": 1,
-        "width": 12,
-        "height": 0,
-        "head": "",
-        "format": "<template>\n <section class=\"ew-fleet\">\n  <header class=\"ew-f-head\">\n   <div>\n    <h2>Fleet</h2>\n    <p class=\"ew-f-sub\">Live state of every device. New devices appear automatically when they connect.</p>\n   </div>\n   <div class=\"ew-f-chips\">\n    <span class=\"ew-f-chip\">Devices <b>{{ devices.length }}</b></span>\n    <span class=\"ew-f-chip is-ok\"><i></i>Online <b>{{ online }}</b></span>\n    <span class=\"ew-f-chip\" :class=\"offline?'is-err':''\"><i></i>Offline <b>{{ offline }}</b></span>\n    <span class=\"ew-f-chip\" :class=\"totalAlerts?'is-err':''\">Active alerts <b>{{ totalAlerts }}</b></span>\n   </div>\n  </header>\n\n  <div v-if=\"!devices.length\" class=\"ew-f-card ew-f-empty\">Waiting for devices… They will appear here as soon as the Central Service reports their state.</div>\n\n  <div class=\"ew-f-grid\">\n   <article v-for=\"d in devices\" :key=\"d.hostname\" class=\"ew-f-card\" :class=\"{off: d.status!=='ONLINE'}\">\n    <div class=\"ew-f-card-head\">\n     <div>\n      <h3>{{ d.hostname }}</h3>\n      <p class=\"ew-f-meta\">{{ d.os || 'OS not reported' }} · {{ d.simulated ? 'Simulated' : 'Device' }}</p>\n     </div>\n     <span class=\"ew-f-chip\" :class=\"d.status==='ONLINE'?'is-ok':'is-err'\"><i></i>{{ d.status || 'UNKNOWN' }}</span>\n    </div>\n\n    <div class=\"ew-f-stats\">\n     <div><span>Temperature</span><b>{{ number(d.metrics?.temp_c) }}<small v-if=\"typeof d.metrics?.temp_c==='number'\"> °C</small></b></div>\n     <div><span>Last update</span><b :title=\"d.last_seen ? new Date(d.last_seen).toLocaleString() : ''\">{{ ago(d.last_seen) }}</b></div>\n     <div><span>Active alerts</span><b><span class=\"ew-f-badge\" :class=\"alerts(d)?'is-err':'is-ok'\">{{ alerts(d) }}</span></b></div>\n    </div>\n\n    <div class=\"ew-f-gauges\">\n     <div v-for=\"s in series\" :key=\"s.key\" class=\"ew-f-gauge\">\n      <svg viewBox=\"0 0 180 104\" role=\"img\" :aria-label=\"s.label+' '+number(d.metrics?.[s.key])+' percent'\">\n       <path d=\"M14 92 A76 76 0 0 1 166 92\" pathLength=\"100\" fill=\"none\" stroke=\"#eef0f3\" stroke-width=\"12\" stroke-linecap=\"round\"/>\n       <path v-if=\"typeof d.metrics?.[s.key]==='number'\" d=\"M14 92 A76 76 0 0 1 166 92\" pathLength=\"100\" fill=\"none\" :stroke=\"level(d, d.metrics[s.key])\" stroke-width=\"12\" stroke-linecap=\"round\" :stroke-dasharray=\"Math.max(0.5,Math.min(100,d.metrics[s.key]))+' 100'\"/>\n       <text x=\"90\" y=\"80\" text-anchor=\"middle\" class=\"ew-f-gval\">{{ number(d.metrics?.[s.key]) }}<tspan class=\"ew-f-gunit\" v-if=\"typeof d.metrics?.[s.key]==='number'\">%</tspan></text>\n      </svg>\n      <span class=\"ew-f-glabel\"><i :style=\"{background:s.color}\"></i>{{ s.label }}</span>\n     </div>\n    </div>\n\n    <div class=\"ew-f-chart-head\">\n     <h4>Last 10 minutes</h4>\n     <div class=\"ew-f-legend\"><span v-for=\"s in series\" :key=\"s.key\"><i :style=\"{background:s.color}\"></i>{{ s.label }}</span></div>\n    </div>\n    <svg v-if=\"(d.samples||[]).length>1\" class=\"ew-f-chart\" viewBox=\"0 0 600 200\" role=\"img\" :aria-label=\"'Live resource history for '+d.hostname\">\n     <g v-for=\"v in [0,25,50,75,100]\" :key=\"v\">\n      <line x1=\"40\" :y1=\"y(v)\" x2=\"592\" :y2=\"y(v)\" :stroke=\"v===0?'#cfd3da':'#eef0f3'\"/>\n      <text x=\"32\" :y=\"y(v)+4\" text-anchor=\"end\" class=\"ew-f-axis\">{{ v }}%</text>\n     </g>\n     <text v-for=\"(t,i) in ticks(d.samples)\" :key=\"i\" :x=\"t.x\" y=\"192\" :text-anchor=\"i===0?'start':i===2?'end':'middle'\" class=\"ew-f-axis\">{{ t.label }}</text>\n     <polyline v-for=\"s in series\" :key=\"s.key\" :points=\"points(d.samples, s.key)\" fill=\"none\" :stroke=\"s.color\" stroke-width=\"1.8\" stroke-linejoin=\"round\"/>\n    </svg>\n    <p v-else class=\"ew-f-nochart\">Collecting live samples…</p>\n   </article>\n  </div>\n </section>\n</template>\n\n<script>\nexport default {\n data(){return {devices:[],now:Date.now(),timer:null,\n  series:[{label:'CPU',key:'cpu_percent',color:'#0d74ce'},{label:'RAM',key:'ram_percent',color:'#d7353e'},{label:'Disk',key:'disk_percent',color:'#e09b2d'}]};},\n computed:{\n  online(){return this.devices.filter(d=>d.status==='ONLINE').length;},\n  offline(){return this.devices.length-this.online;},\n  totalAlerts(){return this.devices.reduce((n,d)=>n+this.alerts(d),0);}\n },\n mounted(){this.send({payload:{action:'refresh'}});this.timer=setInterval(()=>{this.now=Date.now();},5000);},\n beforeUnmount(){clearInterval(this.timer);},\n watch:{msg:{immediate:true,handler(m){if(m?.payload?.kind==='fleet')this.devices=m.payload.devices;}}},\n methods:{\n  number(v){return typeof v==='number'&&Number.isFinite(v)?v.toFixed(1):'—';},\n  alerts(d){const a=d.active_alerts;return Array.isArray(a)?a.length:(a&&typeof a==='object')?Object.keys(a).length:0;},\n  level(d,v){if(d.status!=='ONLINE')return '#b8bec8';return v>=80?'#d7353e':v>=60?'#e09b2d':'#2e9e4f';},\n  ago(ts){const t=Date.parse(ts);if(!Number.isFinite(t))return 'Waiting for metrics';const s=Math.max(0,Math.round((this.now-t)/1000));\n   if(s<60)return s+' s ago';if(s<3600)return Math.round(s/60)+' min ago';return new Date(t).toLocaleString();},\n  y(v){return 170-v*1.5;},\n  ticks(rows){const s=Date.parse(rows[0].ts),e=Date.parse(rows[rows.length-1].ts);\n   return [0,1,2].map(i=>({x:40+552*i/2,label:new Date(s+(e-s)*i/2).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}));},\n  points(rows,key){const start=Date.parse(rows[0].ts),span=Math.max(1,Date.parse(rows[rows.length-1].ts)-start);\n   return rows.filter(r=>Number.isFinite(r[key])).map(r=>(40+(Date.parse(r.ts)-start)*552/span).toFixed(1)+','+this.y(Math.min(100,Math.max(0,r[key]))).toFixed(1)).join(' ');}\n }\n};\n</script>\n\n<style>\n.ew-fleet{--ew-blue:#0d74ce;--ew-line:#e3e5ea;--ew-muted:#6b7280;padding:4px 4px 8px;display:flex;flex-direction:column;gap:16px;font-size:14px;color:inherit}\n.ew-fleet h2{margin:0;font-size:20px;font-weight:600}\n.ew-fleet h3{margin:0;font-size:17px;font-weight:600}\n.ew-fleet h4{margin:0;font-size:13px;font-weight:600;color:#374151}\n.ew-fleet .ew-f-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px}\n.ew-fleet .ew-f-sub{margin:4px 0 0;color:var(--ew-muted);font-size:13px}\n.ew-fleet .ew-f-chips{display:flex;flex-wrap:wrap;gap:8px}\n.ew-fleet .ew-f-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:#f1f3f6;font-size:13px;color:#374151;white-space:nowrap}\n.ew-fleet .ew-f-chip i{width:8px;height:8px;border-radius:50%;background:currentColor}\n.ew-fleet .ew-f-chip.is-ok{background:#e7f6ec;color:#1d6b35}\n.ew-fleet .ew-f-chip.is-err{background:#fdecee;color:#b92832}\n.ew-fleet .ew-f-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:16px}\n.ew-fleet .ew-f-card{border:1px solid var(--ew-line);border-radius:10px;padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:14px;min-width:0;transition:opacity .2s}\n.ew-fleet .ew-f-card.off{opacity:.7}\n.ew-fleet .ew-f-empty{color:var(--ew-muted);text-align:center;padding:36px}\n.ew-fleet .ew-f-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}\n.ew-fleet .ew-f-meta{margin:3px 0 0;color:var(--ew-muted);font-size:13px}\n.ew-fleet .ew-f-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid #f0f1f4;border-radius:8px;background:#fafbfc}\n.ew-fleet .ew-f-stats>div{display:flex;flex-direction:column;gap:4px;padding:10px 14px;border-right:1px solid #f0f1f4;min-width:0}\n.ew-fleet .ew-f-stats>div:last-child{border-right:0}\n.ew-fleet .ew-f-stats>div>span{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted)}\n.ew-fleet .ew-f-stats b{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.ew-fleet .ew-f-stats b small{font-size:13px;color:var(--ew-muted);font-weight:500}\n.ew-fleet .ew-f-badge{display:inline-block;min-width:26px;padding:1px 8px;border-radius:999px;text-align:center;font-size:13px;text-transform:none;letter-spacing:0}\n.ew-fleet .ew-f-badge.is-ok{background:#e7f6ec;color:#1d6b35}\n.ew-fleet .ew-f-badge.is-err{background:#fdecee;color:#b92832}\n.ew-fleet .ew-f-gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}\n.ew-fleet .ew-f-gauge{display:flex;flex-direction:column;align-items:center;gap:2px}\n.ew-fleet .ew-f-gauge svg{width:100%;max-width:170px;display:block}\n.ew-fleet .ew-f-gval{font-size:28px;font-weight:600;fill:#1f2937;font-variant-numeric:tabular-nums}\n.ew-fleet .ew-f-gunit{font-size:15px;fill:#6b7280;font-weight:500}\n.ew-fleet .ew-f-glabel{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--ew-muted)}\n.ew-fleet .ew-f-glabel i,.ew-fleet .ew-f-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}\n.ew-fleet .ew-f-chart-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:12px;border-top:1px solid #f0f1f4}\n.ew-fleet .ew-f-legend{display:flex;gap:14px;font-size:12px;color:#374151}\n.ew-fleet .ew-f-legend span{display:flex;align-items:center;gap:6px}\n.ew-fleet .ew-f-chart{display:block;width:100%;height:auto}\n.ew-fleet .ew-f-axis{font-size:11px;fill:#6b7280}\n.ew-fleet .ew-f-nochart{margin:0;padding:30px 0;text-align:center;color:var(--ew-muted);font-size:13px}\n</style>\n",
-        "noerr": 0,
-        "storeOutMessages": false,
-        "passthru": false,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 710,
-        "y": 1740,
-        "wires": [
-            [
-                "ew_fleet_extra_cache"
-            ]
-        ]
-    },
-    {
-        "id": "ew_fleet_extra_cache",
-        "type": "function",
-        "z": "a7b49e5e7d2d312e",
-        "name": "Fleet state · bounded live samples",
-        "func": "\nlet devices=context.get('devices')||{};\nconst p=msg.payload;\nif(p?.hostname){\n const d=devices[p.hostname]||{samples:[]};\n const ts=Date.parse(p.last_seen),last=d.samples[d.samples.length-1];\n if(p.status==='ONLINE'&&Number.isFinite(ts)&&p.metrics&&(!last||last.ts!==p.last_seen))d.samples.push({ts:p.last_seen,...p.metrics});\n d.samples=d.samples.filter(r=>Date.parse(r.ts)>=Date.now()-600000).slice(-121);\n devices[p.hostname]={...p,samples:d.samples};context.set('devices',devices);\n}\nreturn {payload:{kind:'fleet',devices:Object.values(devices).sort((a,b)=>a.hostname.localeCompare(b.hostname))}};",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "context.set('devices',{});",
-        "finalize": "",
-        "libs": [],
-        "x": 370,
-        "y": 1740,
-        "wires": [
-            [
-                "ew_fleet_extra_ui"
-            ]
-        ]
-    },
-    {
-        "id": "ew_doc_a7b49e5e7d2d312e",
-        "type": "comment",
-        "z": "a7b49e5e7d2d312e",
-        "name": "EdgeWatcher · configuration and verification",
-        "info": "Dashboard: /dashboard/fleet\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
-        "x": 400,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "ew_doc_ew_alerts_tab",
-        "type": "comment",
-        "z": "ew_alerts_tab",
-        "name": "EdgeWatcher · configuration and verification",
-        "info": "Dashboard: /dashboard/alerts\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
-        "x": 400,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "ew_doc_ew_device_tab",
-        "type": "comment",
-        "z": "ew_device_tab",
-        "name": "EdgeWatcher · configuration and verification",
-        "info": "Dashboard: /dashboard/device\nMQTT: mosquitto:1883. State dashboard/+/state QoS 0; alerts dashboard/alerts QoS 1. Client nodered-dashboard uses a persistent session.\nHTTP: API_URL (http://central:8000), GET devices/history/processes/rules; PUT full rule list.\nAlert cache: /data/alerts-cache.json (500 displayed records and 10000 duplicate IDs); atomic snapshot writes.\nSaved flows are mounted at nodered/data/flows.json. Do not commit runtime cache, credentials, node_modules or collected device history.\nRecovery checks: retained startup state, disk restore in fresh Function context, MQTT offline queuing, duplicate replay, API errors, independent browser selections, and rule version conflict.\nActual Docker container restart/build and real Raspberry Pi/network tests require Docker or hardware access.",
-        "x": 400,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "ew_doc_ew_rules_tab",
