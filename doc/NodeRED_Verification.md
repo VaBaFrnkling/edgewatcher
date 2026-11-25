@@ -1,6 +1,8 @@
-# Node RED implementation and verification
+# Node-RED implementation and verification
 
-Verified on 24 November 2026 against the running Central Service, Node-RED 4.0.9, and FlowFuse Dashboard 1.37.0.
+Updated on 25 November 2026 against the running Central Service, Node-RED 4.0.9, and FlowFuse Dashboard 1.37.0.
+
+Evidence is distinguished below: automated checks run during the review, Docker tests run by Iliya with terminal output or dashboard confirmation, and the teammate's fresh-clone test. The review environment cannot access the Docker socket directly.
 
 ## Implemented
 
@@ -11,7 +13,9 @@ Verified on 24 November 2026 against the running Central Service, Node-RED 4.0.9
 
 ## Checks performed
 
-19 executable source/component checks passed, plus 9 live backend/MQTT integration checks and 3 recovery checks. These are 31 passing checks, not the teammate's separate Annex C checklist.
+The 24 November verification recorded 19 executable source/component checks, 9 live backend/MQTT integration checks and 3 recovery checks: 31 passing checks. These are not the teammate's separate Annex C checklist. On 25 November the 19 component checks and the repository smoke script passed again.
+
+The 25 November review also confirmed that all three devices were ONLINE, the saved flows matched the running flows, and agent rule-engine checks passed for sustained conditions, single transitions, duplicate rule versions, disabling, invalid metrics and top-15 process sorting. A 1,000-sample run of the actual sim-03 simulator and rule engine contained 95 CPU samples above 80% and no FIRING event for the 30-second sustained rule.
 
 | Check | Result |
 |---|---|
@@ -30,16 +34,39 @@ Verified on 24 November 2026 against the running Central Service, Node-RED 4.0.9
 | API unavailable and restored | PASS: visible ECONNREFUSED, then history loaded after restoring configuration and reopening |
 | Test cleanup | PASS: original sim-01 rule list restored; no load flags created; no permanent fake devices created |
 
-## Release checks that have not run
+## Container integration checks completed
 
-- Full Docker container/process restart, agent stop/pause/LWT, and broker container restart: blocked by Docker socket permissions. A real MQTT disconnect and fresh Function context were tested instead; these do not replace a process/container restart.
-- Fresh Docker image build: blocked by Docker permissions. The accompanying Dockerfile/Compose change is prepared but not built in this session.
-- Real Raspberry Pi, cross-laptop/hotspot, and the teammate's exact ten-step Annex C checklist: require the hardware/network or a supplied checklist. The repository currently contains an 18-test agent/infrastructure guide, not a separate ten-step Annex C document.
-- Mobile viewport: the test browser remained at a fixed 1280 CSS pixels; a true mobile viewport was not verified.
+These Docker operations were run by Iliya. They supplement the earlier component and MQTT-disconnect tests rather than changing their original count.
+
+| Check | Result and evidence |
+|---|---|
+| Fresh Docker build and smoke test | PASS, user-reported terminal output. The teammate also reported a successful fresh clone, local merge, image build and four-page dashboard test on 24 November. |
+| Node-RED restart and saved alerts | PASS, user-reported restart and dashboard confirmation that saved events remained. |
+| Alerts while Node-RED was stopped | PASS, user-reported delivery of FIRING and RESOLVED after restart. |
+| Alerts while Central was stopped | PASS, user-reported delivery of FIRING and RESOLVED after restart. |
+| Agent pause / Last Will / recovery | PASS, user-reported OFFLINE after pause and ONLINE after unpause. |
+| Broker outage and agent alert buffer | PASS, user confirmed the guided 25 November test: broker stopped, simulated load applied to sim-02, then broker restored and load removed; FIRING and RESOLVED appeared. Full broker-outage terminal logs were not supplied. |
+| Rule retransmission while awaiting ACK | PASS, supplied terminal transcript on 25 November. sim-03 version 3 was published at 01:39:23 UTC and retried at 01:39:34. After OFFLINE at 01:39:37 there were no further rule publications before ONLINE at 01:41:09. An applied ACK for version 3 then arrived. Later applied:false ACKs indicate duplicate rule deliveries were ignored. |
+| Agent restart clears an open alert | PASS, supplied before/after MQTT state on 25 November. At 01:44:08 UTC sim-02 had one High CPU alert, CPU 97.4%, and version 1 acknowledged. After restart and load removal, the 01:45:14 state was ONLINE, CPU 58.5%, active_alerts empty, and version 1 still acknowledged/applied with no error. |
+
+The sim-03 retry test resaved its existing empty rule set (version 2 to 3); it created no extra device. The restart test removed its simulated load flag. Alert history remains as test evidence.
+
+## Open backend finding
+
+The 25 November audit reproduced a duplicate-ACK issue in Central's `central/handlers.py`, `_handle_ack`. Replaying an identical `applied:true` ACK for an already acknowledged version clears the device's active alerts, because it is treated as an agent restart. In an isolated test of the actual handler, one active alert became zero without a RESOLVED event.
+
+This finding remains open until a fix and regression test are supplied. Normal restart recovery passing does not establish that duplicate successful ACKs are harmless. The fix must preserve restart recovery while making duplicate ACK delivery idempotent.
+
+## Verification still outside this sign-off
+
+- The repository contains a 21-test agent/infrastructure/central guide. This report does not claim that every test in that guide, or every step of the separate ten-step Annex C checklist, has been executed.
+- Real Raspberry Pi and cross-laptop/hotspot tests have not been verified here. The team's agreed presentation uses sim-01, sim-02 and sim-03. Any mandatory hardware criterion must be checked against the original course brief.
+- A true mobile viewport has not been verified.
+- The lecturer's original marking brief is not available for a complete criterion-by-criterion grading check.
 
 ## Run and verify
 
-From the repository root after applying the setup patch:
+From the repository root:
 
 ```sh
 docker compose up -d --build
@@ -63,6 +90,8 @@ The smoke script runs read-only HTTP/flow checks; it does not claim to exercise 
 - No authentication/TLS is added; this remains the local course demo described by the project.
 - Test runs incremented sim-01's version counter while restoring its original rule list. QA-labelled FIRING/RESOLVED events remain as test evidence in the saved Alerts list.
 
-## Git handoff
+## Git and submission handoff
 
-Commit flows.json, package.json, Dockerfile, .dockerignore, docker-compose.yml, this guide, and the smoke test. Keep node_modules, alert cache, runtime credentials/configuration, and collected monitoring data out of Git.
+The completed dashboard was merged into main in commit 55526b0. Commit this updated verification report with the final test results. Keep node_modules, alert cache, runtime credentials/configuration, and collected monitoring data out of Git.
+
+The separate four-page `EdgeWatcher_NodeRED_Flow_Documentation.pdf` has been completed and sent to the team. Include it in the submission ZIP alongside the final team report PDF, presentation and source code. The verification report is not a substitute for the flow documentation. Confirm the team report's four-page limit and the author spelling (Ilya/Iliya) in the final exported PDF.
