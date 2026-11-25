@@ -2,18 +2,20 @@
 
 Updated on 25 November 2026 against the running Central Service, Node-RED 4.0.9, and FlowFuse Dashboard 1.37.0.
 
-Evidence is distinguished below: automated checks run during the review, Docker tests run by Iliya with terminal output or dashboard confirmation, and the teammate's fresh-clone test. The review environment cannot access the Docker socket directly.
+Evidence is distinguished below: automated checks run during the review, Docker tests run by Iliya with terminal output or dashboard confirmation, and a teammate's fresh-clone test.
 
 ## Implemented
 
-- Fleet: retained live state, three simulator cards with gauges and charts, automatic cards for additional hostnames, and ONLINE/OFFLINE presentation.
-- Alerts: dashboard/alerts at QoS 1, persistent MQTT session, newest-first searchable events, notifications, a 500-event display, and 10000 recent duplicate IDs. An atomic snapshot in /data/alerts-cache.json restores the display and duplicate filter after a fresh consumer starts.
-- Device: GET /devices, last-hour CPU/RAM/disk history, and top-CPU and top-RAM process tables. Responses from older selections are ignored; replies retain the requesting browser identity.
-- Rules: complete-set GET/PUT, validated drafts, enable/disable, removal, version and ACK status, device errors, stale-save protection, and one in-flight dashboard save per device. Draft discard uses inline confirmation.
+All four pages share one visual style: cards, colour labels for status and severity, and the same colours and buttons.
+
+- Fleet: one card per device, built by a single template, so sim-01, sim-02, sim-03 and any new hostname get the same layout automatically. Each card shows ONLINE/OFFLINE status, OS, temperature, last update, active alerts, CPU/RAM/disk gauges (green below 60%, orange 60–80%, red from 80%) and a 10-minute live chart. Offline devices are greyed out. A summary at the top counts devices, online, offline and active alerts. Live state comes from the retained dashboard/+/state topic.
+- Alerts: dashboard/alerts at QoS 1, persistent MQTT session, newest-first events, notifications, a 500-event display, and 10000 recent duplicate IDs. The table has All / Firing / Resolved filters with counts, a search box and pagination (25, 50, 100… up to 500 rows per page). An atomic snapshot in /data/alerts-cache.json restores the display and duplicate filter after a fresh consumer starts.
+- Device: GET /devices, latest CPU/RAM/disk values, last-hour CPU/RAM/disk history chart, and top-CPU and top-RAM process tables. Responses from older selections are ignored; replies retain the requesting browser identity.
+- Rules: complete-set GET/PUT, validated drafts, enable/disable switch, removal, version and ACK status, device errors, stale-save protection, and one in-flight dashboard save per device. Draft discard uses inline confirmation.
 
 ## Checks performed
 
-The 24 November verification recorded 19 executable source/component checks, 9 live backend/MQTT integration checks and 3 recovery checks: 31 passing checks. These are not the teammate's separate Annex C checklist. On 25 November the 19 component checks and the repository smoke script passed again.
+The 24 November verification recorded 19 executable source/component checks, 9 live backend/MQTT integration checks and 3 recovery checks: 31 passing checks. These are not the separate Annex C checklist. On 25 November the 19 component checks and the repository smoke script passed again.
 
 The 25 November review also confirmed that all three devices were ONLINE, the saved flows matched the running flows, and agent rule-engine checks passed for sustained conditions, single transitions, duplicate rule versions, disabling, invalid metrics and top-15 process sorting. A 1,000-sample run of the actual sim-03 simulator and rule engine contained 95 CPU samples above 80% and no FIRING event for the 30-second sustained rule.
 
@@ -28,7 +30,7 @@ The 25 November review also confirmed that all three devices were ONLINE, the sa
 | Real alert replay twice, including after reconnect | PASS: no duplicate rows |
 | Disk snapshot and restore into a fresh Function context | PASS |
 | Events produced during an MQTT disconnect | PASS: FIRING and RESOLVED delivered on reconnect |
-| Additional-device handler and card rendering | PASS: generic handler tests and a controlled rendering check with existing simulator data |
+| Additional-device handler and card rendering | PASS on the earlier Fleet layout: generic handler tests and a controlled rendering check with existing simulator data |
 | Independent Device browser selections | PASS: sim-02 and sim-01 remained separate |
 | Stale rule save rejected | PASS: browser showed reload warning; lock and version checks also tested |
 | API unavailable and restored | PASS: visible ECONNREFUSED, then history loaded after restoring configuration and reopening |
@@ -40,7 +42,7 @@ These Docker operations were run by Iliya. They supplement the earlier component
 
 | Check | Result and evidence |
 |---|---|
-| Fresh Docker build and smoke test | PASS, user-reported terminal output. The teammate also reported a successful fresh clone, local merge, image build and four-page dashboard test on 24 November. |
+| Fresh Docker build and smoke test | PASS, user-reported terminal output. A teammate also reported a successful fresh clone, local merge, image build and four-page dashboard test on 24 November. |
 | Node-RED restart and saved alerts | PASS, user-reported restart and dashboard confirmation that saved events remained. |
 | Alerts while Node-RED was stopped | PASS, user-reported delivery of FIRING and RESOLVED after restart. |
 | Alerts while Central was stopped | PASS, user-reported delivery of FIRING and RESOLVED after restart. |
@@ -51,11 +53,27 @@ These Docker operations were run by Iliya. They supplement the earlier component
 
 The sim-03 retry test resaved its existing empty rule set (version 2 to 3); it created no extra device. The restart test removed its simulated load flag. Alert history remains as test evidence.
 
-## Open backend finding
+## Dashboard redesign (25 November)
 
-The 25 November audit reproduced a duplicate-ACK issue in Central's `central/handlers.py`, `_handle_ack`. Replaying an identical `applied:true` ACK for an already acknowledged version clears the device's active alerts, because it is treated as an agent restart. In an isolated test of the actual handler, one active alert became zero without a RESOLVED event.
+The four pages were restyled after the checks above. The data flow, MQTT topics, HTTP calls, validation and save logic are unchanged, except for these two changes on the Fleet page:
 
-This finding remains open until a fix and regression test are supplied. Normal restart recovery passing does not establish that duplicate successful ACKs are harmless. The fix must preserve restart recovery while making duplicate ACK delivery idempotent.
+- The 48 fixed nodes for sim-01/02/03 (functions, gauges, texts, charts) and their three groups were replaced by one template. The device-discovery function now handles every hostname instead of skipping the three simulators.
+- Active alerts on Fleet cards are now counted correctly. The Central Service sends active_alerts as an object, and the previous card for additional devices always showed 0.
+
+Gauges and charts are now drawn by the template instead of the ui-gauge and ui-chart nodes.
+
+| Check after the redesign | Result |
+|---|---|
+| flows.json is valid JSON, with unique IDs, no broken wires and no widgets pointing to deleted groups | PASS |
+| Each page compared against a static preview with sample data | PASS |
+| Alerts page in the running dashboard | PASS: card, filters, search and pagination displayed |
+| Fleet, Device and Rules pages with live data | To be confirmed in the running dashboard |
+
+## Resolved backend finding
+
+The 25 November audit reproduced a duplicate-ACK issue in Central's `central/handlers.py`, `_handle_ack`. Replaying an identical `applied:true` ACK for an already acknowledged version cleared the device's active alerts, because it was treated as an agent restart.
+
+This is fixed in commit 505bbfa. `_handle_ack` now remembers the last ACK and ignores an identical copy, while a new ACK for the same version (a real restart) still clears the active alerts. An isolated run of the actual handler confirmed both cases: the restart ACK cleared the alerts, and a repeated identical ACK left one active alert in place. The repository does not include an automated regression test for this case.
 
 ## Verification still outside this sign-off
 
@@ -82,16 +100,15 @@ The smoke script runs read-only HTTP/flow checks; it does not claim to exercise 
 ## Operation and limits
 
 - Node-RED connects to mosquitto:1883. The HTTP base is API_URL, normally http://central:8000 inside Docker.
-- New devices are displayed under Additional devices; known simulator cards preserve the original layout.
+- Every device, including new hostnames, gets the same Fleet card automatically; no flow changes are needed when a device connects.
 - History/processes are fetched on selection and Refresh, rather than continuously polled.
-- Live Fleet chart data restarts with the flow; durable historical samples remain in the Central Service.
-- Alert cache is bounded to the latest 500 events and 10000 IDs; it is a dashboard recovery cache, not an unlimited audit log. Do not commit it.
+- The Fleet chart shows the last 10 minutes of live samples kept in Node-RED memory. It restarts empty with the flow; durable historical samples remain in the Central Service.
+- Alert cache is bounded to the latest 500 events and 10000 IDs; it is a dashboard recovery cache, not an unlimited audit log.
+- If writing the alert cache fails, the warning appears in the Node-RED debug panel and log, not on the Alerts page.
 - Save locking coordinates dashboard clients. The backend has no atomic conditional-PUT endpoint, so simultaneous edits from external tools cannot be fully serialized by Node-RED.
 - No authentication/TLS is added; this remains the local course demo described by the project.
 - Test runs incremented sim-01's version counter while restoring its original rule list. QA-labelled FIRING/RESOLVED events remain as test evidence in the saved Alerts list.
 
-## Git and submission handoff
+## Repository notes
 
-The completed dashboard was merged into main in commit 55526b0. Commit this updated verification report with the final test results. Keep node_modules, alert cache, runtime credentials/configuration, and collected monitoring data out of Git.
-
-The separate four-page `EdgeWatcher_NodeRED_Flow_Documentation.pdf` has been completed and sent to the team. Include it in the submission ZIP alongside the final team report PDF, presentation and source code. The verification report is not a substitute for the flow documentation. Confirm the team report's four-page limit and the author spelling (Ilya/Iliya) in the final exported PDF.
+Only `flows.json`, `package.json` and `settings.js` from `nodered/data` are tracked. The alert cache, runtime configuration, backups, `node_modules` and the collected monitoring data in `data/` are excluded by `.gitignore`.
