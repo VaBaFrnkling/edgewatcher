@@ -16,6 +16,10 @@ ACK_TIMEOUT_S = 10   # Republish unacknowledged rules after 10 seconds
 RESEND_POLL_S = 2    # Background resend thread check interval
 SEEN_MAX = 5000      # Maximum alert_id UUIDs kept in duplicate filter
 
+# Metric fields copied into dashboard/{h}/state (Annex A.1)
+METRIC_KEYS = ("cpu_percent", "ram_percent", "disk_percent", "temp_c", "net_sent_kbps",
+               "net_recv_kbps", "process_count", "top_process_name", "top_process_cpu")
+
 # Allowed hostname characters to prevent path traversal in data/{hostname}/
 HOST_RE = re.compile(r"^[A-Za-z0-9._-]+$")
 

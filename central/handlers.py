@@ -3,14 +3,8 @@
 import json
 import state
 import storage
-from config import valid_host
+from config import METRIC_KEYS, valid_host
 from mqtt_client import publish_alert, publish_state
-
-METRIC_KEYS = (
-    "cpu_percent", "ram_percent", "disk_percent", "temp_c",
-    "net_sent_kbps", "net_recv_kbps", "process_count",
-    "top_process_name", "top_process_cpu",
-)
 
 
 def _handle_metrics(h: str, d: dict, p: dict):
@@ -54,6 +48,10 @@ def _handle_alert(h: str, d: dict, p: dict, raw_text: str) -> bool:
 def _handle_ack(h: str, d: dict, p: dict):
     """Process rule ACK, detect agent restarts, and clear pending timer (Step 9)."""
     r = state.ensure_rules(h)
+    key = json.dumps(p, sort_keys=True)  # A QoS 1 duplicate is an identical copy of the ACK
+    if key == r.get("last_ack"):
+        return  # The same ACK delivered twice: not a restart, nothing to do
+    r["last_ack"] = key
     ver = int(p.get("version", 0))
     applied = p.get("applied")
     if applied is True and ver == r["acked_version"] and ver > 0:
